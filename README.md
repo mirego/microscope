@@ -41,7 +41,7 @@ Event.expired_after_or_at(2.months.from_now)
 
 ## License
 
-`Microscope` is © 2013 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/emotions/blob/master/LICENSE.md) file.
+`Microscope` is © 2013 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/microscope/blob/master/LICENSE.md) file.
 
 ## About Mirego
 
