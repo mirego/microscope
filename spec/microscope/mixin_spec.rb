@@ -12,7 +12,7 @@ describe Microscope::Mixin do
         end
       end
 
-      microscope 'User', excluded_columns: [:admin]
+      microscope 'User', except: [:admin]
     end
 
     it { should respond_to :active }
