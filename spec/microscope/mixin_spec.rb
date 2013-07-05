@@ -1,6 +1,26 @@
 require 'spec_helper'
 
 describe Microscope::Mixin do
+  describe :acts_as_microscope do
+    subject { User }
+
+    before do
+      run_migration do
+        create_table(:users, force: true) do |t|
+          t.boolean :active, default: false
+          t.boolean :admin, default: false
+        end
+      end
+
+      microscope 'User', excluded_columns: [:admin]
+    end
+
+    it { should respond_to :active }
+    it { should respond_to :not_active }
+    it { should_not respond_to :admin }
+    it { should_not respond_to :not_admin }
+  end
+
   describe 'Boolean scopes' do
     subject { User }
 
