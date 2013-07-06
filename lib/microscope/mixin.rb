@@ -8,8 +8,12 @@ module Microscope
 
     module ClassMethods
       def define_microscrope_scopes
-        excluded_fields = @microscope_options[:except] || []
-        model_columns = self.columns.dup.reject { |c| excluded_fields.include?(c.name.to_sym) }
+        except = @microscope_options[:except] || []
+        model_columns = self.columns.dup.reject { |c| except.include?(c.name.to_sym) }
+
+        if only = @microscope_options[:only]
+          model_columns = model_columns.select { |c| only.include?(c.name.to_sym) }
+        end
 
         boolean_fields = model_columns.select { |c| c.type == :boolean }.map(&:name)
         class_eval do
