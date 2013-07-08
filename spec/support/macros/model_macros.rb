@@ -1,8 +1,8 @@
 module ModelMacros
   # Create a new microscope model
-  def microscope(klass_name, &block)
+  def microscope(klass_name, options = {}, &block)
     spawn_model klass_name, ActiveRecord::Base do
-      acts_as_microscope
+      acts_as_microscope options
       instance_exec(&block) if block
     end
   end
