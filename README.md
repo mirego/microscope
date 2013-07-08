@@ -45,6 +45,26 @@ Event.expired_between(2.months.ago..1.month.from_now)
 # SELECT * FROM `events` where `events`.`expired_at` BETWEEN '2013-05-05 15:43:42' AND '2013-08-05 15:43:42'
 ```
 
+### Options
+
+You can use a few options when calling `acts_as_microscope`:
+
+```ruby
+class Event < ActiveRecord::Base
+  acts_as_microscope, only: [:created_at]
+end
+
+class User < ActiveRecord::Base
+  acts_as_microscope, except: [:activated_at]
+end
+
+Event.created_before(2.months.ago) # works!
+Event.updated_before(2.months.ago) # NoMethodError
+
+User.created_before(2.months.ago) # works!
+User.activated_before(2.months.ago) # NoMethodError
+```
+
 ## License
 
 `Microscope` is © 2013 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/microscope/blob/master/LICENSE.md) file.
