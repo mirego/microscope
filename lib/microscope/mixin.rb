@@ -18,8 +18,8 @@ module Microscope
         boolean_fields = model_columns.select { |c| c.type == :boolean }.map(&:name)
         class_eval do
           boolean_fields.each do |field|
-            scope field, where(field => true)
-            scope "not_#{field}", where(field => false)
+            scope field, lambda { where(field => true) }
+            scope "not_#{field}", lambda { where(field => false) }
           end
         end
 
