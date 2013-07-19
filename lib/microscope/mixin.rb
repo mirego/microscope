@@ -16,18 +16,17 @@ module Microscope
         end
 
         boolean_fields = model_columns.select { |c| c.type == :boolean }.map(&:name)
-        class_eval do
-          boolean_fields.each do |field|
+        boolean_fields.each do |field|
+          class_eval <<-RUBY, __FILE__, __LINE__ + 1
             scope field, lambda { where(field => true) }
             scope "not_#{field}", lambda { where(field => false) }
-          end
+          RUBY
         end
 
         datetime_fields = model_columns.select { |c| c.type == :datetime }.map(&:name)
-        class_eval do
-          datetime_fields.each do |field|
-            cropped_field = field.gsub(/_at$/, '')
-
+        datetime_fields.each do |field|
+          cropped_field = field.gsub(/_at$/, '')
+          class_eval <<-RUBY, __FILE__, __LINE__ + 1
             scope "#{cropped_field}_before", lambda { |time| where(["#{field} < ?", time]) }
             scope "#{cropped_field}_before_or_at", lambda { |time| where(["#{field} <= ?", time]) }
             scope "#{cropped_field}_before_now", lambda { where(["#{field} < ?", Time.now]) }
@@ -37,7 +36,7 @@ module Microscope
             scope "#{cropped_field}_after_now", lambda { where(["#{field} > ?", Time.now]) }
 
             scope "#{cropped_field}_between", lambda { |range| where(field => range) }
-          end
+          RUBY
         end
       end
     end
