@@ -58,14 +58,14 @@ class Event < ActiveRecord::Base
 end
 
 class User < ActiveRecord::Base
-  acts_as_microscope, except: [:activated_at]
+  acts_as_microscope, except: [:created_at]
 end
 
 Event.created_before(2.months.ago) # works!
 Event.updated_before(2.months.ago) # NoMethodError
 
-User.created_before(2.months.ago) # works!
-User.activated_before(2.months.ago) # NoMethodError
+User.created_before(2.months.ago) # NoMethodError
+User.updated_before(2.months.ago) # works!
 ```
 
 ## License
