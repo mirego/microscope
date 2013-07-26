@@ -10,7 +10,7 @@ module Microscope
     @inject_into_active_record ||= Proc.new do
       def self.acts_as_microscope(options = {})
         @microscope_options = options
-        self.send :include, Microscope::Mixin
+        include Microscope::Mixin
       end
     end
   end
