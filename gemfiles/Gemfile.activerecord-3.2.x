@@ -1,5 +1,5 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gemspec :path => "../"
+gemspec path: '../'
 
 gem 'activerecord', '~> 3.2.0'
