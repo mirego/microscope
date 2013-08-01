@@ -143,4 +143,64 @@ describe Microscope::Mixin do
       it { expect(Event.started_between(4.months.ago..2.months.ago).to_a).to eql [@event] }
     end
   end
+
+  describe 'Date scopes' do
+    subject { Event }
+
+    before do
+      run_migration do
+        create_table(:events, force: true) do |t|
+          t.date :started_on, default: false
+        end
+      end
+
+      microscope 'Event'
+    end
+
+    describe 'before scope' do
+      before do
+        @event = Event.create(started_on: 2.months.ago)
+        Event.create(started_on: 1.month.from_now)
+      end
+
+      it { expect(Event.started_before(1.month.ago).to_a).to eql [@event] }
+    end
+
+    describe 'before_today scope' do
+      before do
+        @event = Event.create(started_on: 2.months.ago)
+        Event.create(started_on: 1.month.from_now)
+      end
+
+      it { expect(Event.started_before_today.to_a).to eql [@event] }
+    end
+
+    describe 'after scope' do
+      before do
+        @event = Event.create(started_on: 2.months.from_now)
+        Event.create(started_on: 1.month.ago)
+      end
+
+      it { expect(Event.started_after(1.month.from_now).to_a).to eql [@event] }
+    end
+
+    describe 'after_today scope' do
+      before do
+        @event = Event.create(started_on: 2.months.from_now)
+        Event.create(started_on: 1.month.ago)
+      end
+
+      it { expect(Event.started_after_today.to_a).to eql [@event] }
+    end
+
+    describe 'between scope' do
+      before do
+        Event.create(started_on: 1.month.ago)
+        @event = Event.create(started_on: 3.months.ago)
+        Event.create(started_on: 5.month.ago)
+      end
+
+      it { expect(Event.started_between(4.months.ago..2.months.ago).to_a).to eql [@event] }
+    end
+  end
 end

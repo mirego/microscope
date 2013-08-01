@@ -35,6 +35,21 @@ module Microscope
 
           scope "#{cropped_field}_between", lambda { |range| where(field => range) }
         end
+
+        date_fields = model_columns.select { |c| c.type == :date }.map(&:name)
+        date_fields.each do |field|
+          cropped_field = field.gsub(/_on$/, '')
+
+          scope "#{cropped_field}_before", lambda { |time| where(["#{field} < ?", time]) }
+          scope "#{cropped_field}_before_or_on", lambda { |time| where(["#{field} <= ?", time]) }
+          scope "#{cropped_field}_before_today", lambda { where(["#{field} < ?", Date.today]) }
+
+          scope "#{cropped_field}_after", lambda { |time| where(["#{field} > ?", time]) }
+          scope "#{cropped_field}_after_or_at", lambda { |time| where(["#{field} >= ?", time]) }
+          scope "#{cropped_field}_after_today", lambda { where(["#{field} > ?", Date.today]) }
+
+          scope "#{cropped_field}_between", lambda { |range| where(field => range) }
+        end
       end
     end
   end
