@@ -3,7 +3,7 @@
 [![Gem Version](https://badge.fury.io/rb/microscope.png)](https://rubygems.org/gems/microscope)
 [![Build Status](https://travis-ci.org/mirego/microscope.png?branch=master)](https://travis-ci.org/mirego/microscope)
 
-Microscope adds useful scopes targeting ActiveRecord boolean and datetime fields.
+Microscope adds useful scopes targeting ActiveRecord boolean, date and datetime fields.
 
 ## Installation
 
@@ -20,6 +20,7 @@ create_table "events" do |t|
   t.string   "name"
   t.boolean  "special"
   t.datetime "expired_at"
+  t.date     "started_on"
 end
 
 class Event < ActiveRecord::Base
@@ -46,6 +47,12 @@ Event.expired_after_or_at(2.months.from_now)
 
 Event.expired_between(2.months.ago..1.month.from_now)
 # SELECT * FROM `events` where `events`.`expired_at` BETWEEN '2013-05-05 15:43:42' AND '2013-08-05 15:43:42'
+
+Event.started_before(2.days.ago)
+# SELECT * FROM `events` where `events`.`started_on` < '2013-07-03'
+
+Event.started_between(2.days.ago..3.days.from_now)
+# SELECT * FROM `events` where `events`.`started_on` BETWEEN '2013-07-03' AND '2013-07-08'
 ```
 
 ### Options
