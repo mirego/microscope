@@ -17,26 +17,23 @@ module Microscope
 
         boolean_fields = model_columns.select { |c| c.type == :boolean }.map(&:name)
         boolean_fields.each do |field|
-          class_eval <<-RUBY, __FILE__, __LINE__ + 1
-            scope field, lambda { where(field => true) }
-            scope "not_#{field}", lambda { where(field => false) }
-          RUBY
+          scope field, lambda { where(field => true) }
+          scope "not_#{field}", lambda { where(field => false) }
         end
 
         datetime_fields = model_columns.select { |c| c.type == :datetime }.map(&:name)
         datetime_fields.each do |field|
           cropped_field = field.gsub(/_at$/, '')
-          class_eval <<-RUBY, __FILE__, __LINE__ + 1
-            scope "#{cropped_field}_before", lambda { |time| where(["#{field} < ?", time]) }
-            scope "#{cropped_field}_before_or_at", lambda { |time| where(["#{field} <= ?", time]) }
-            scope "#{cropped_field}_before_now", lambda { where(["#{field} < ?", Time.now]) }
 
-            scope "#{cropped_field}_after", lambda { |time| where(["#{field} > ?", time]) }
-            scope "#{cropped_field}_after_or_at", lambda { |time| where(["#{field} >= ?", time]) }
-            scope "#{cropped_field}_after_now", lambda { where(["#{field} > ?", Time.now]) }
+          scope "#{cropped_field}_before", lambda { |time| where(["#{field} < ?", time]) }
+          scope "#{cropped_field}_before_or_at", lambda { |time| where(["#{field} <= ?", time]) }
+          scope "#{cropped_field}_before_now", lambda { where(["#{field} < ?", Time.now]) }
 
-            scope "#{cropped_field}_between", lambda { |range| where(field => range) }
-          RUBY
+          scope "#{cropped_field}_after", lambda { |time| where(["#{field} > ?", time]) }
+          scope "#{cropped_field}_after_or_at", lambda { |time| where(["#{field} >= ?", time]) }
+          scope "#{cropped_field}_after_now", lambda { where(["#{field} > ?", Time.now]) }
+
+          scope "#{cropped_field}_between", lambda { |range| where(field => range) }
         end
       end
     end
