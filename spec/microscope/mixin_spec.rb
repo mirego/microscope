@@ -230,6 +230,7 @@ describe Microscope::Mixin do
         @event1 = Event.create(started_on: 1.month.ago)
         @event2 = Event.create(started_on: 3.months.ago)
         Event.create(started_on: 2.months.from_now)
+        Event.create(started_on: nil)
       end
 
       it { expect(Event.started.to_a).to eql [@event1, @event2] }
@@ -240,9 +241,10 @@ describe Microscope::Mixin do
         Event.create(started_on: 1.month.ago)
         Event.create(started_on: 3.months.ago)
         @event1 = Event.create(started_on: 2.months.from_now)
+        @event2 = Event.create(started_on: nil)
       end
 
-      it { expect(Event.not_started.to_a).to eql [@event1] }
+      it { expect(Event.not_started.to_a).to eql [@event1, @event2] }
     end
   end
 end
