@@ -90,7 +90,7 @@ describe Microscope::Mixin do
     before do
       run_migration do
         create_table(:events, force: true) do |t|
-          t.datetime :started_at, default: false
+          t.datetime :started_at, default: nil
         end
       end
 
@@ -143,11 +143,12 @@ describe Microscope::Mixin do
       it { expect(Event.started_between(4.months.ago..2.months.ago).to_a).to eql [@event] }
     end
 
-    describe 'super-boolean positive scope' do
+    describe 'super-boolean positive scope', focus: true do
       before do
         @event1 = Event.create(started_at: 1.month.ago)
         @event2 = Event.create(started_at: 3.months.ago)
         Event.create(started_at: 2.months.from_now)
+        Event.create(started_at: nil)
       end
 
       it { expect(Event.started.to_a).to eql [@event1, @event2] }
@@ -158,9 +159,10 @@ describe Microscope::Mixin do
         Event.create(started_at: 1.month.ago)
         Event.create(started_at: 3.months.ago)
         @event1 = Event.create(started_at: 2.months.from_now)
+        @event2 = Event.create(started_at: nil)
       end
 
-      it { expect(Event.not_started.to_a).to eql [@event1] }
+      it { expect(Event.not_started.to_a).to eql [@event1, @event2] }
     end
   end
 
@@ -170,7 +172,7 @@ describe Microscope::Mixin do
     before do
       run_migration do
         create_table(:events, force: true) do |t|
-          t.date :started_on, default: false
+          t.date :started_on, default: nil
         end
       end
 

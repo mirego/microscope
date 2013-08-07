@@ -35,7 +35,7 @@ module Microscope
 
           scope "#{cropped_field}_between", lambda { |range| where(field => range) }
 
-          scope "#{cropped_field}", lambda { where("#{field} NOT NULL AND DATE(#{field}) <= DATE(?)", Time.now) }
+          scope "#{cropped_field}", lambda { where("#{field} IS NOT NULL AND DATE(#{field}) <= DATE(?)", Time.now) }
           scope "not_#{cropped_field}", lambda { where("#{field} IS NULL OR DATE(#{field}) > DATE(?)", Time.now) }
         end
 
@@ -53,7 +53,7 @@ module Microscope
 
           scope "#{cropped_field}_between", lambda { |range| where(field => range) }
 
-          scope "#{cropped_field}", lambda { where("#{field} NOT NULL AND DATE(#{field}) <= DATE(?)", Date.today) }
+          scope "#{cropped_field}", lambda { where("#{field} IS NOT NULL AND DATE(#{field}) <= DATE(?)", Date.today) }
           scope "not_#{cropped_field}", lambda { where("#{field} IS NULL OR DATE(#{field}) > DATE(?)", Date.today) }
         end
       end
