@@ -55,7 +55,7 @@ Event.started_between(2.days.ago..3.days.from_now)
 # SELECT * FROM `events` where `events`.`started_on` BETWEEN '2013-07-03' AND '2013-07-08'
 
 Event.started
-# SELECT * FROM `events` where `events`.`started_at` NOT NULL AND `events`.`started_at` <= '2013-07-05 15:43:42'
+# SELECT * FROM `events` where `events`.`started_at` IS NOT NULL AND `events`.`started_at` <= '2013-07-05 15:43:42'
 
 Event.not_started
 # SELECT * FROM `events` where `events`.`started_at` IS NULL OR `events`.`started_at` > '2013-07-05 15:43:42'
