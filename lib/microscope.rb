@@ -16,4 +16,4 @@ module Microscope
   end
 end
 
-require 'microscope/railtie' if defined?(Rails) && Rails::VERSION::MAJOR >= 3
+ActiveRecord::Base.class_eval(&Microscope.inject_into_active_record)

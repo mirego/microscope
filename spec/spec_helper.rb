@@ -8,9 +8,6 @@ require 'microscope'
 # Require our macros and extensions
 Dir[File.expand_path('../../spec/support/macros/*.rb', __FILE__)].map(&method(:require))
 
-# Inject our methods into ActiveRecord (like our railtie does)
-ActiveRecord::Base.class_eval(&Microscope.inject_into_active_record)
-
 RSpec.configure do |config|
   # Include our macros
   config.include DatabaseMacros
