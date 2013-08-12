@@ -2,7 +2,7 @@ module Microscope
   class InstanceMethod
     class DateInstanceMethod < InstanceMethod
       def apply
-        cropped_field = field.name.gsub(/_at$/, '')
+        cropped_field = field.name.gsub(/_on$/, '')
 
         model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
           define_method "#{cropped_field}?" do
