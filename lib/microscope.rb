@@ -3,14 +3,16 @@ require "microscope/version"
 require 'active_record'
 require 'active_support'
 
-require "microscope/mixin"
+require "microscope/scope"
+require "microscope/scope/boolean_scope"
+require "microscope/scope/datetime_scope"
+require "microscope/scope/date_scope"
 
 module Microscope
   def self.inject_into_active_record
-    @inject_into_active_record ||= Proc.new do
+    Proc.new do
       def self.acts_as_microscope(options = {})
-        @microscope_options = options
-        include Microscope::Mixin
+        Microscope::Scope.inject_scopes(self, options)
       end
     end
   end
