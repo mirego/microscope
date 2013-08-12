@@ -1,6 +1,7 @@
 # Microscope
 
 [![Gem Version](https://badge.fury.io/rb/microscope.png)](https://rubygems.org/gems/microscope)
+[![Code Climate](https://codeclimate.com/github/mirego/microscope.png)](https://codeclimate.com/github/mirego/microscope)
 [![Build Status](https://travis-ci.org/mirego/microscope.png?branch=master)](https://travis-ci.org/mirego/microscope)
 
 Microscope adds useful scopes targeting ActiveRecord boolean, date and datetime fields.
