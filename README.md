@@ -62,6 +62,16 @@ Event.not_started
 # SELECT * FROM `events` where `events`.`started_at` IS NULL OR `events`.`started_at` > '2013-07-05 15:43:42'
 ```
 
+Microscope also adds two instance methods to the model per scope.
+
+```ruby
+event = Event.started.first
+# SELECT * FROM `events` where `events`.`started_at` IS NOT NULL AND `events`.`started_at` <= '2013-07-05 15:43:42' LIMIT 1
+
+event.started? # => true
+event.not_started? # => false
+```
+
 ### Options
 
 You can use a few options when calling `acts_as_microscope`:
