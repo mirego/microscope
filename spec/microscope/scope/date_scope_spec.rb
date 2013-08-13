@@ -80,4 +80,16 @@ describe Microscope::Scope::DateScope do
 
     it { expect(Event.not_started.to_a).to eql [@event1, @event2] }
   end
+
+  describe 'boolean instance method' do
+    context 'for positive record' do
+      subject { Event.create(started_on: 3.months.ago) }
+      it { should be_started }
+    end
+
+    context 'for negative record' do
+      subject { Event.create(started_on: 2.months.from_now) }
+      it { should_not be_started }
+    end
+  end
 end
