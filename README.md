@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/mirego/microscope">
-    <img src="http://i.imgur.com/mFfg8Wy.png" alt="Microscope" />
+    <img src="http://i.imgur.com/JMcAStM.png" alt="Microscope" />
   </a>
   <br />
   Microscope adds useful scopes targeting ActiveRecord boolean, date and datetime fields.
