@@ -3,7 +3,7 @@
     <img src="http://i.imgur.com/JMcAStM.png" alt="Microscope" />
   </a>
   <br />
-  Microscope adds useful scopes targeting ActiveRecord boolean, date and datetime fields.
+  Microscope adds useful scopes targeting ActiveRecord <code>boolean</code>, <code>date</code> and <code>datetime</code> fields.
   <br /><br />
   <a href="https://rubygems.org/gems/microscope"><img src="https://badge.fury.io/rb/microscope.png" /></a>
   <a href="https://codeclimate.com/github/mirego/microscope"><img src="https://codeclimate.com/github/mirego/microscope.png" /></a>
