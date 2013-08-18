@@ -1,10 +1,16 @@
-# Microscope
+<p align="center">
+  <a href="https://github.com/mirego/microscope">
+    <img src="http://i.imgur.com/mFfg8Wy.png" alt="Microscope" />
+  </a>
+  <br />
+  Microscope adds useful scopes targeting ActiveRecord boolean, date and datetime fields.
+  <br /><br />
+  <a href="https://rubygems.org/gems/microscope"><img src="https://badge.fury.io/rb/microscope.png" /></a>
+  <a href="https://codeclimate.com/github/mirego/microscope"><img src="https://codeclimate.com/github/mirego/microscope.png" /></a>
+  <a href="https://travis-ci.org/mirego/microscope"><img src="https://travis-ci.org/mirego/microscope.png?branch=master" /></a>
+</p>
 
-[![Gem Version](https://badge.fury.io/rb/microscope.png)](https://rubygems.org/gems/microscope)
-[![Code Climate](https://codeclimate.com/github/mirego/microscope.png)](https://codeclimate.com/github/mirego/microscope)
-[![Build Status](https://travis-ci.org/mirego/microscope.png?branch=master)](https://travis-ci.org/mirego/microscope)
-
-Microscope adds useful scopes targeting ActiveRecord boolean, date and datetime fields.
+---
 
 ## Installation
 
