@@ -10,6 +10,7 @@ module Microscope
       end
 
       def apply
+        return unless field.name =~ @cropped_field_regex
         @cropped_field = field.name.gsub(@cropped_field_regex, '')
 
         model.class_eval <<-RUBY, __FILE__, __LINE__ + 1

@@ -5,6 +5,7 @@ describe Microscope::Scope::DatetimeScope do
     run_migration do
       create_table(:events, force: true) do |t|
         t.datetime :started_at, default: nil
+        t.datetime :published_date, default: nil
       end
     end
 
@@ -89,5 +90,12 @@ describe Microscope::Scope::DatetimeScope do
       subject { Event.create(started_at: 2.months.from_now) }
       it { should_not be_started }
     end
+  end
+
+  context 'for field that does not match the pattern' do
+    subject { Event }
+
+    it { should_not respond_to(:published_date) }
+    it { should_not respond_to(:not_published_date) }
   end
 end
