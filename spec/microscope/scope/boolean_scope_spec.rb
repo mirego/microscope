@@ -14,18 +14,22 @@ describe Microscope::Scope::BooleanScope do
   end
 
   describe 'positive scope' do
-    before { @user1 = User.create(active: true) }
+    before do
+      @user1 = User.create(active: true)
+      @user2 = User.create(active: false)
+    end
 
     its(:active) { should have(1).items }
     its(:active) { should include(@user1) }
-    its(:not_active) { should be_empty }
   end
 
   describe 'negative scope' do
-    before { @user1 = User.create(active: false) }
+    before do
+      @user1 = User.create(active: false)
+      @user2 = User.create(active: true)
+    end
 
     its(:not_active) { should have(1).items }
     its(:not_active) { should include(@user1) }
-    its(:active) { should be_empty }
   end
 end
