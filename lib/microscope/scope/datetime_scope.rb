@@ -10,8 +10,8 @@ module Microscope
       end
 
       def apply
-        return unless field.name =~ @cropped_field_regex
-        @cropped_field = field.name.gsub(@cropped_field_regex, '')
+        return unless @field_name =~ @cropped_field_regex
+        @cropped_field = @field_name.gsub(@cropped_field_regex, '')
 
         model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
           #{before_scopes}
@@ -25,30 +25,30 @@ module Microscope
 
       def before_scopes
         <<-RUBY
-          scope "#{@cropped_field}_before", lambda { |time| where("#{field.name} < ?", time) }
-          scope "#{@cropped_field}_before_or_at", lambda { |time| where("#{field.name} <= ?", time) }
-          scope "#{@cropped_field}_before#{@now_suffix}", lambda { where("#{field.name} < ?", #{@now}) }
+          scope "#{@cropped_field}_before", lambda { |time| where("`#{@table_name}`.`#{@field_name}` < ?", time) }
+          scope "#{@cropped_field}_before_or_at", lambda { |time| where("`#{@table_name}`.`#{@field_name}` <= ?", time) }
+          scope "#{@cropped_field}_before#{@now_suffix}", lambda { where("`#{@table_name}`.`#{@field_name}` < ?", #{@now}) }
         RUBY
       end
 
       def after_scopes
         <<-RUBY
-          scope "#{@cropped_field}_after", lambda { |time| where("#{field.name} > ?", time) }
-          scope "#{@cropped_field}_after_or_at", lambda { |time| where("#{field.name} >= ?", time) }
-          scope "#{@cropped_field}_after#{@now_suffix}", lambda { where("#{field.name} > ?", #{@now}) }
+          scope "#{@cropped_field}_after", lambda { |time| where("`#{@table_name}`.`#{@field_name}` > ?", time) }
+          scope "#{@cropped_field}_after_or_at", lambda { |time| where("`#{@table_name}`.`#{@field_name}` >= ?", time) }
+          scope "#{@cropped_field}_after#{@now_suffix}", lambda { where("`#{@table_name}`.`#{@field_name}` > ?", #{@now}) }
         RUBY
       end
 
       def between_scopes
         <<-RUBY
-          scope "#{@cropped_field}_between", lambda { |range| where("#{field.name}" => range) }
+          scope "#{@cropped_field}_between", lambda { |range| where("#{@field_name}" => range) }
         RUBY
       end
 
       def boolean_scopes
         <<-RUBY
-          scope "#{@cropped_field}", lambda { where("#{field.name} IS NOT NULL AND #{field.name} <= ?", #{@now}) }
-          scope "not_#{@cropped_field}", lambda { where("#{field.name} IS NULL OR #{field.name} > ?", #{@now}) }
+          scope "#{@cropped_field}", lambda { where("`#{@table_name}`.`#{@field_name}` IS NOT NULL AND `#{@table_name}`.`#{@field_name}` <= ?", #{@now}) }
+          scope "not_#{@cropped_field}", lambda { where("`#{@table_name}`.`#{@field_name}` IS NULL OR `#{@table_name}`.`#{@field_name}` > ?", #{@now}) }
         RUBY
       end
     end
