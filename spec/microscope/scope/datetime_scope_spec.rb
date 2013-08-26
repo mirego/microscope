@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe Microscope::Scope::DatetimeScope do
   subject { Event }
 
