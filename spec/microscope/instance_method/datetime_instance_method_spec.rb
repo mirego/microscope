@@ -22,4 +22,16 @@ describe Microscope::InstanceMethod::DatetimeInstanceMethod do
       it { should_not be_started }
     end
   end
+
+  describe '#not_started?' do
+    context 'with negative result' do
+      subject { Event.create(started_at: 2.months.ago) }
+      it { should_not be_not_started }
+    end
+
+    context 'with positive result' do
+      subject { Event.create(started_at: 1.month.from_now) }
+      it { should be_not_started }
+    end
+  end
 end

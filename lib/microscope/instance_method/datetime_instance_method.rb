@@ -9,6 +9,10 @@ module Microscope
             value = send("#{field.name}")
             !value.nil? && value <= Time.now
           end
+
+          define_method "not_#{cropped_field}?" do
+            !#{cropped_field}?
+          end
         RUBY
       end
     end
