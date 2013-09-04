@@ -13,12 +13,12 @@ describe Microscope do
           t.boolean :moderator, default: false
 
           # DateTime
-          t.datetime :published_at, default: false
-          t.datetime :removed_at, default: false
+          t.datetime :published_at, default: nil
+          t.datetime :removed_at, default: nil
 
           # Date
-          t.date :started_on, default: false
-          t.date :ended_on, default: false
+          t.date :started_on, default: nil
+          t.date :ended_on, default: nil
         end
       end
     end
