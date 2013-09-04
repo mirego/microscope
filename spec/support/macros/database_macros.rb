@@ -11,23 +11,12 @@ module DatabaseMacros
     klass.new.up
   end
 
-  def self.database_file
-    @database_file || File.expand_path('../test.db', __FILE__)
-  end
-
-  def setup_database
-    # Make sure the test database file is gone
-    cleanup_database
-
-    # Establish the connection
-    SQLite3::Database.new FileUtils.touch(DatabaseMacros.database_file).first
-    ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: DatabaseMacros.database_file)
+  def setup_database(opts = {})
+    adapter = "#{opts[:adapter].capitalize}Adapter".constantize.new(database: opts[:database])
+    adapter.establish_connection!
+    adapter.reset_database!
 
     # Silence everything
     ActiveRecord::Base.logger = ActiveRecord::Migration.verbose = false
-  end
-
-  def cleanup_database
-    FileUtils.rm(DatabaseMacros.database_file) if File.exists?(DatabaseMacros.database_file)
   end
 end
