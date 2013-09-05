@@ -8,4 +8,12 @@ gemfile:
   - gemfiles/Gemfile.activerecord-4.0
   - gemfiles/Gemfile.activerecord-3.2.x
 
+env:
+  - DB_ADAPTER=sqlite3
+  - DB_ADAPTER=mysql2
+
+before_script:
+  - mysql -e 'create database microscope_test;'
+  - psql -c 'create database microscope_test;' -U postgres
+
 script: "echo 'DO IT' && bundle exec rake spec"
