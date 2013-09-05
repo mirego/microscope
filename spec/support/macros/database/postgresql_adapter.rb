@@ -1,3 +1,5 @@
+require_relative 'database_adapter'
+
 class PostgresqlAdapter < DatabaseAdapter
   def database_configuration
     {

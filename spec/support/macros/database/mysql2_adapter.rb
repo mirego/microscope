@@ -1,3 +1,5 @@
+require_relative 'database_adapter'
+
 class Mysql2Adapter < DatabaseAdapter
   def database_configuration
     {
