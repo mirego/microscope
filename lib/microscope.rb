@@ -14,6 +14,7 @@ require "microscope/instance_method/date_instance_method"
 
 class ActiveRecord::Base
   def self.acts_as_microscope(options = {})
+    return unless table_exists?
 
     except = options[:except] || []
     model_columns = columns.dup.reject { |c| except.include?(c.name.to_sym) }
