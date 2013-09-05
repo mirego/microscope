@@ -11,6 +11,7 @@ gemfile:
 env:
   - DB_ADAPTER=sqlite3
   - DB_ADAPTER=mysql2
+  - DB_ADAPTER=postgresql
 
 before_script:
   - mysql -e 'create database microscope_test;'
