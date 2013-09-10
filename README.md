@@ -7,6 +7,8 @@
   <br /><br />
   <a href="https://rubygems.org/gems/microscope"><img src="https://badge.fury.io/rb/microscope.png" /></a>
   <a href="https://codeclimate.com/github/mirego/microscope"><img src="https://codeclimate.com/github/mirego/microscope.png" /></a>
+  <a href='https://coveralls.io/r/mirego/microscope?branch=master'><img src='https://coveralls.io/repos/mirego/microscope/badge.png?branch=master' /></a>
+  <a href='https://gemnasium.com/mirego/microscope'><img src="https://gemnasium.com/mirego/microscope.png" /></a>
   <a href="https://travis-ci.org/mirego/microscope"><img src="https://travis-ci.org/mirego/microscope.png?branch=master" /></a>
 </p>
 
