@@ -9,6 +9,7 @@ require "microscope/scope/datetime_scope"
 require "microscope/scope/date_scope"
 
 require "microscope/instance_method"
+require "microscope/instance_method/boolean_instance_method"
 require "microscope/instance_method/datetime_instance_method"
 require "microscope/instance_method/date_instance_method"
 
