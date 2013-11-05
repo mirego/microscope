@@ -3,16 +3,16 @@ require 'spec_helper'
 describe Microscope::InstanceMethod::BooleanInstanceMethod do
   before do
     run_migration do
-      create_table(:events, force: true) do |t|
-        t.boolean :started, default: false
+      create_table(:animals, force: true) do |t|
+        t.boolean :fed, default: false
       end
     end
 
-    microscope 'Event'
+    microscope 'Animal'
   end
 
-  describe '#start!' do
-    let(:event) { Event.create(started: false) }
-    it { expect { event.start! }.to change { event.reload.started }.from(false).to(true) }
+  describe '#feed!' do
+    let(:animal) { Animal.create(fed: false) }
+    it { expect { animal.feed! }.to change { animal.reload.fed? }.from(false).to(true) }
   end
 end

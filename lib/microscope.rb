@@ -13,6 +13,14 @@ require "microscope/instance_method/boolean_instance_method"
 require "microscope/instance_method/datetime_instance_method"
 require "microscope/instance_method/date_instance_method"
 
+module Microscope
+  IRREGULAR_VERBS_FILE = File.expand_path('../../data/irregular_verbs.yml', __FILE__)
+
+  def self.irregular_verbs
+    @irregular_verbs ||= YAML.load_file(IRREGULAR_VERBS_FILE)
+  end
+end
+
 class ActiveRecord::Base
   def self.acts_as_microscope(options = {})
     return unless table_exists?
