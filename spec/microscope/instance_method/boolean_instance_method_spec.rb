@@ -4,7 +4,7 @@ describe Microscope::InstanceMethod::BooleanInstanceMethod do
   before do
     run_migration do
       create_table(:events, force: true) do |t|
-        t.boolean :started, default: false
+        t.boolean :sent, default: false
       end
     end
 
@@ -12,7 +12,7 @@ describe Microscope::InstanceMethod::BooleanInstanceMethod do
   end
 
   describe '#start!' do
-    let(:event) { Event.create(started: false) }
-    it { expect { event.start! }.to change { event.reload.started }.from(false).to(true) }
+    let(:event) { Event.create(sent: false) }
+    it { expect { event.send! }.to change { event.reload.sent }.from(false).to(true) }
   end
 end

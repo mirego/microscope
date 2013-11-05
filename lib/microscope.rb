@@ -13,6 +13,17 @@ require "microscope/instance_method/boolean_instance_method"
 require "microscope/instance_method/datetime_instance_method"
 require "microscope/instance_method/date_instance_method"
 
+module Microscope
+  PAST_PARTICIPLES_EXCEPTIONS = {
+    'sent' => 'send',
+    'taken' => 'take'
+  }
+
+  def self.past_participle_exceptions
+    @past_participle_exceptions ||= PAST_PARTICIPLES_EXCEPTIONS
+  end
+end
+
 class ActiveRecord::Base
   def self.acts_as_microscope(options = {})
     return unless table_exists?

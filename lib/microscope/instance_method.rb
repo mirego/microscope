@@ -15,6 +15,8 @@ module Microscope
     def self.past_participle_to_infinitive(participle)
       if participle =~ /ed$/
         participle.sub(/ed$/, '')
+      elsif Microscope.past_participle_exceptions.include?(participle)
+        Microscope.past_participle_exceptions[participle]
       else
         participle
       end
