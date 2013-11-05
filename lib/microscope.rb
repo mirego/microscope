@@ -14,13 +14,10 @@ require "microscope/instance_method/datetime_instance_method"
 require "microscope/instance_method/date_instance_method"
 
 module Microscope
-  PAST_PARTICIPLES_EXCEPTIONS = {
-    'sent' => 'send',
-    'taken' => 'take'
-  }
+  IRREGULAR_VERBS_FILE = File.expand_path('../../data/irregular_verbs.yml', __FILE__)
 
-  def self.past_participle_exceptions
-    @past_participle_exceptions ||= PAST_PARTICIPLES_EXCEPTIONS
+  def self.irregular_verbs
+    @irregular_verbs ||= YAML.load_file(IRREGULAR_VERBS_FILE)
   end
 end
 

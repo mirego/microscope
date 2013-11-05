@@ -100,28 +100,6 @@ User.created_before(2.months.ago) # NoMethodError
 User.updated_before(2.months.ago) # works!
 ```
 
-### Verbs
-
-Microscope adds a *bang* instance method that converts verb in field names to their infinitive form. For instance, if the
-model has a `started_at` datetime field, the `start!` instance method will populate it with `Time.now` and save (`save!`) it.
-
-However, if you have attributes with verbs that do not simply convert from past participle to infinitive by removing `/ed$/` you
-may want to add other verbs, like so:
-
-```ruby
-Microscope.past_participle_exceptions.merge! 'eaten' => 'eat'
-
-class Meal
-  acts_as_microscope, only: [:eaten_at]
-end
-
-meal = Meal.not_eaten.first
-meal.eaten # => false
-
-meal.eat!
-meal.eaten # => true
-```
-
 ## License
 
 `Microscope` is © 2013 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/microscope/blob/master/LICENSE.md) file.
