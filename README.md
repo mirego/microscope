@@ -70,7 +70,7 @@ Event.not_started
 # SELECT * FROM `events` where `events`.`started_at` IS NULL OR `events`.`started_at` > '2013-07-05 15:43:42'
 ```
 
-Microscope also adds two instance methods to the model per scope.
+Microscope also adds three instance methods to the model per scope.
 
 ```ruby
 event = Event.started.first
@@ -78,6 +78,13 @@ event = Event.started.first
 
 event.started? # => true
 event.not_started? # => false
+
+event = Event.unstarted.first
+event.started? # => false
+
+event.start!
+event.started? # => true
+event.started_at # => 2013-07-05 15:43:44 (Time.now)
 ```
 
 ### Options
