@@ -34,4 +34,12 @@ describe Microscope::InstanceMethod::DatetimeInstanceMethod do
       it { should be_not_started }
     end
   end
+
+  describe '#start!' do
+    let(:stubbed_date) { Time.parse('2020-03-18 08:00:00') }
+    before { Time.stub(:now).and_return(stubbed_date) }
+
+    let(:event) { Event.create(started_at: nil) }
+    it { expect { event.start! }.to change { event.reload.started_at }.from(nil).to(stubbed_date) }
+  end
 end
