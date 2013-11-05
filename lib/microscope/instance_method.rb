@@ -13,10 +13,10 @@ module Microscope
 
     # Convert a past participle to its infinitive form
     def self.past_participle_to_infinitive(participle)
-      if participle =~ /ed$/
-        participle.sub(/ed$/, '')
-      elsif Microscope.irregular_verbs.include?(participle)
+      if Microscope.irregular_verbs.include?(participle)
         Microscope.irregular_verbs[participle]
+      elsif participle =~ /ed$/
+        participle.sub(/ed$/, '')
       else
         participle
       end
