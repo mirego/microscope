@@ -102,8 +102,8 @@ User.updated_before(2.months.ago) # works!
 
 ### Verbs
 
-Microscope adds a *bang* instance method that converts verb in the the field name to its infinitive form. For instance, if the
-model has a `started_at` datetime field, the `start!` instance method will populate it with `Time.now` and save it.
+Microscope adds a *bang* instance method that converts verb in field names to their infinitive form. For instance, if the
+model has a `started_at` datetime field, the `start!` instance method will populate it with `Time.now` and save (`save!`) it.
 
 However, if you have attributes with verbs that do not simply convert from past participle to infinitive by removing `/ed$/` you
 may want to add other verbs, like so:
