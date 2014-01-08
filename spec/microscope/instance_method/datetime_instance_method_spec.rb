@@ -5,7 +5,6 @@ describe Microscope::InstanceMethod::DatetimeInstanceMethod do
     run_migration do
       create_table(:events, force: true) do |t|
         t.datetime :started_at, default: nil
-        t.datetime :featured_at, default: nil
       end
     end
 
@@ -43,6 +42,5 @@ describe Microscope::InstanceMethod::DatetimeInstanceMethod do
     let(:event) { Event.create(started_at: nil) }
     it { expect { event.start! }.to change { event.reload.started_at }.from(nil).to(stubbed_date) }
     it { expect(event).to respond_to(:start!) }
-    it { expect(event).to respond_to(:feature!) }
   end
 end
