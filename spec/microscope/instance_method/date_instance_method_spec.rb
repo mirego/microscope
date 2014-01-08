@@ -25,6 +25,24 @@ describe Microscope::InstanceMethod::DateInstanceMethod do
     end
   end
 
+  describe '#started=' do
+    before { subject.started = value }
+
+    context 'with present argument' do
+      subject { Event.create(started_on: 2.months.ago) }
+      let(:value) { '0' }
+
+      it { should_not be_started }
+    end
+
+    context 'with blank argument' do
+      subject { Event.create }
+      let(:value) { '1' }
+
+      it { should be_started }
+    end
+  end
+
   describe '#not_started?' do
     context 'with negative result' do
       subject { Event.create(started_on: 2.months.ago) }

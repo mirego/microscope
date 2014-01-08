@@ -11,6 +11,14 @@ module Microscope
             !value.nil? && value <= Date.today
           end
 
+          define_method "#{cropped_field}=" do |value|
+            if Microscope::InstanceMethod.value_to_boolean(value)
+              self.#{field.name} = Date.today
+            else
+              self.#{field.name} = nil
+            end
+          end
+
           define_method "not_#{cropped_field}?" do
             !#{cropped_field}?
           end
