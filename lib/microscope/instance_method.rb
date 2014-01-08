@@ -16,7 +16,7 @@ module Microscope
       if Microscope.irregular_verbs.include?(participle)
         Microscope.irregular_verbs[participle]
       elsif participle =~ /ed$/
-        participle.sub(/ed$/, '')
+        participle.sub(/d$/, '')
       else
         participle
       end
