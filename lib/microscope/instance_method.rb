@@ -12,14 +12,18 @@ module Microscope
     end
 
     # Convert a past participle to its infinitive form
-    def self.past_participle_to_infinitive(participle)
-      if Microscope.irregular_verbs.include?(participle)
+    def self.past_participle_to_infinitive(key)
+      *key, participle = key.split('_')
+
+      infinitive = if Microscope.irregular_verbs.include?(participle)
         Microscope.irregular_verbs[participle]
       elsif participle =~ /ed$/
         participle.sub(/d$/, '')
       else
         participle
       end
+
+      (key << infinitive).join('_')
     end
 
     # Convert a value to its boolean representation
