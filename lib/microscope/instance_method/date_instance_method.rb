@@ -13,7 +13,7 @@ module Microscope
 
           define_method "#{cropped_field}=" do |value|
             if Microscope::InstanceMethod.value_to_boolean(value)
-              self.#{field.name} = Date.today
+              self.#{field.name} ||= Date.today
             else
               self.#{field.name} = nil
             end

@@ -26,18 +26,26 @@ describe Microscope::InstanceMethod::DatetimeInstanceMethod do
   describe '#started=' do
     before { subject.started = value }
 
-    context 'with present argument' do
+    context 'with blank argument' do
       subject { Event.create(started_at: 2.months.ago) }
       let(:value) { '0' }
 
       it { should_not be_started }
     end
 
-    context 'with blank argument' do
+    context 'with present argument' do
       subject { Event.create }
       let(:value) { '1' }
 
       it { should be_started }
+    end
+
+    context 'with present argument, twice' do
+      subject { Event.create(started_at: time) }
+      let(:time) { 2.months.ago }
+      let(:value) { '1' }
+
+      it { expect(subject.started_at).to eql time }
     end
   end
 
