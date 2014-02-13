@@ -4,11 +4,18 @@ describe Microscope::InstanceMethod::DateInstanceMethod do
   before do
     run_migration do
       create_table(:events, force: true) do |t|
+        t.date :start_date, default: nil
         t.date :started_on, default: nil
       end
     end
 
     microscope 'Event'
+  end
+
+  describe '#start_date being ignored' do
+    specify do
+      expect { Event.create(start_date: 2.months.ago) }.to_not raise_error
+    end
   end
 
   describe '#started?' do

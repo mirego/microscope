@@ -1,19 +1,28 @@
 module Microscope
   class InstanceMethod
     class DatetimeInstanceMethod < InstanceMethod
+      def initialize(*args)
+        super
+
+        @now = 'Time.now'
+        @cropped_field_regex = /_at$/
+      end
+
       def apply
-        cropped_field = field.name.gsub(/_at$/, '')
+        return unless @field_name =~ @cropped_field_regex
+
+        cropped_field = field.name.gsub(@cropped_field_regex, '')
         infinitive_verb = self.class.past_participle_to_infinitive(cropped_field)
 
         model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
           define_method "#{cropped_field}?" do
             value = send("#{field.name}")
-            !value.nil? && value <= Time.now
+            !value.nil? && value <= #{@now}
           end
 
           define_method "#{cropped_field}=" do |value|
             if Microscope::InstanceMethod.value_to_boolean(value)
-              self.#{field.name} ||= Time.now
+              self.#{field.name} ||= #{@now}
             else
               self.#{field.name} = nil
             end
@@ -24,7 +33,7 @@ module Microscope
           end
 
           define_method "#{infinitive_verb}!" do
-            send("#{field.name}=", Time.now)
+            send("#{field.name}=", #{@now})
             save!
           end
         RUBY
