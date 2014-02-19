@@ -18,3 +18,11 @@ before_script:
   - psql -c 'create database microscope_test;' -U postgres
 
 script: "echo 'DO IT' && bundle exec rake spec"
+
+notifications:
+  hipchat:
+    rooms:
+      secure: cJWiEh3XNWrEkoeaZd5Kyx3igwOJto+B8jPiyr38Kfv8Z2WLINkHbMQXcd37/tIubX6w9VWjWJ2TuX5cK2H07EraPDDYAHJlnoR/WIPoYwQoXGUWqGH26O2LdBiLs9JcBQ9rKT8K8wmQuxf2rTpY7lN2RoKMjjEjcleWJwQG/3w=
+    template:
+      - '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message} (<a href="%{build_url}">Build</a>/<a href="%{compare_url}">Changes</a>)'
+    format: 'html'
