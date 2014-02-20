@@ -1,3 +1,3 @@
 module Microscope
-  VERSION = '0.5.6.1'
+  VERSION = '0.5.7'
 end
