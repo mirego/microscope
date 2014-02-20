@@ -19,6 +19,6 @@ describe Microscope::InstanceMethod::BooleanInstanceMethod do
   describe '#not_feed!' do
     let(:animal) { Animal.create(fed: true) }
     it { expect { animal.not_feed! }.to change { animal.reload.fed? }.from(true).to(false) }
-    it { expect(animal).to respond_to(:un_feed!) }
+    it { expect(animal).to respond_to(:unfeed!) }
   end
 end

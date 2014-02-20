@@ -85,6 +85,6 @@ describe Microscope::InstanceMethod::DateInstanceMethod do
 
     let(:event) { Event.create(started_on: stubbed_date) }
     it { expect { event.not_start! }.to change { event.reload.started_on }.from(stubbed_date).to(nil) }
-    it { expect(event).to respond_to(:un_start!) }
+    it { expect(event).to respond_to(:unstart!) }
   end
 end
