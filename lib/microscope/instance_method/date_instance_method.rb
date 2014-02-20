@@ -36,6 +36,12 @@ module Microscope
             send("#{field.name}=", #{@now})
             save!
           end
+
+          define_method "not_#{infinitive_verb}!" do
+            send("#{field.name}=", nil)
+            save!
+          end
+          alias_method 'un#{infinitive_verb}!', 'not_#{infinitive_verb}!'
         RUBY
       end
     end
