@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Microscope::Scope::DatetimeScope do
-  subject { Event }
-
   before do
     run_migration do
       create_table(:events, force: true) do |t|
@@ -84,20 +82,18 @@ describe Microscope::Scope::DatetimeScope do
 
   describe 'boolean instance method' do
     context 'for positive record' do
-      subject { Event.create(started_at: 3.months.ago) }
-      it { should be_started }
+      let(:event) { Event.create(started_at: 3.months.ago) }
+      it { expect(event).to be_started }
     end
 
     context 'for negative record' do
-      subject { Event.create(started_at: 2.months.from_now) }
-      it { should_not be_started }
+      let(:event) { Event.create(started_at: 2.months.from_now) }
+      it { expect(event).to_not be_started }
     end
   end
 
   context 'for field that does not match the pattern' do
-    subject { Event }
-
-    it { should_not respond_to(:published_date) }
-    it { should_not respond_to(:not_published_date) }
+    it { expect(Event).to_not respond_to(:published_date) }
+    it { expect(Event).to_not respond_to(:not_published_date) }
   end
 end

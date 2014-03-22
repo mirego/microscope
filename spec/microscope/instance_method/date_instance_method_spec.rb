@@ -20,55 +20,55 @@ describe Microscope::InstanceMethod::DateInstanceMethod do
 
   describe '#started?' do
     context 'with positive result' do
-      subject { Event.create(started_on: 2.months.ago) }
-      it { should be_started }
-      it { should_not be_not_started }
+      let(:event) { Event.create(started_on: 2.months.ago) }
+      it { expect(event).to be_started }
+      it { expect(event).to_not be_not_started }
     end
 
     context 'with negative result' do
-      subject { Event.create(started_on: 1.month.from_now) }
-      it { should_not be_started }
-      it { should be_not_started }
+      let(:event) { Event.create(started_on: 1.month.from_now) }
+      it { expect(event).to_not be_started }
+      it { expect(event).to be_not_started }
     end
   end
 
   describe '#started=' do
-    before { subject.started = value }
+    before { event.started = value }
 
     context 'with blank argument' do
-      subject { Event.create(started_on: 2.months.ago) }
+      let(:event) { Event.create(started_on: 2.months.ago) }
       let(:value) { '0' }
 
-      it { should_not be_started }
+      it { expect(event).to_not be_started }
     end
 
     context 'with present argument' do
-      subject { Event.create }
+      let(:event) { Event.create }
       let(:value) { '1' }
 
-      it { should be_started }
+      it { expect(event).to be_started }
     end
 
     context 'with present argument, twice' do
-      subject { Event.create(started_on: time) }
+      let(:event) { Event.create(started_on: time) }
       let(:time) { 2.months.ago }
       let(:value) { '1' }
 
-      it { expect(subject.started_on.day).to eql time.day }
-      it { expect(subject.started_on.month).to eql time.month }
-      it { expect(subject.started_on.year).to eql time.year }
+      it { expect(event.started_on.day).to eql time.day }
+      it { expect(event.started_on.month).to eql time.month }
+      it { expect(event.started_on.year).to eql time.year }
     end
   end
 
   describe '#not_started?' do
     context 'with negative result' do
-      subject { Event.create(started_on: 2.months.ago) }
-      it { should_not be_not_started }
+      let(:event) { Event.create(started_on: 2.months.ago) }
+      it { expect(event).to_not be_not_started }
     end
 
     context 'with positive result' do
-      subject { Event.create(started_on: 1.month.from_now) }
-      it { should be_not_started }
+      let(:event) { Event.create(started_on: 1.month.from_now) }
+      it { expect(event).to be_not_started }
     end
   end
 
