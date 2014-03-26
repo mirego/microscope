@@ -78,6 +78,7 @@ describe Microscope::Scope::DateScope do
     end
 
     it { expect(Event.not_started.to_a).to eql [@event1, @event2] }
+    it { expect(Event.unstarted.to_a).to eql Event.not_started.to_a }
   end
 
   describe 'boolean instance method' do

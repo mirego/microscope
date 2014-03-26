@@ -29,5 +29,6 @@ describe Microscope::Scope::BooleanScope do
 
     it { expect(User.not_active).to have(1).items }
     it { expect(User.not_active).to include(@user1) }
+    it { expect(User.unactive.to_a).to eql User.not_active.to_a }
   end
 end

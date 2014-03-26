@@ -48,6 +48,7 @@ module Microscope
         <<-RUBY
           scope "#{cropped_field}", lambda { where('#{quoted_field} IS NOT NULL AND #{quoted_field} <= ?', #{@now}) }
           scope "not_#{cropped_field}", lambda { where('#{quoted_field} IS NULL OR #{quoted_field} > ?', #{@now}) }
+          scope "un#{cropped_field}", lambda { not_#{cropped_field} }
         RUBY
       end
     end
