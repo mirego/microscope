@@ -53,6 +53,7 @@ describe Microscope::InstanceMethod::DatetimeInstanceMethod do
     context 'with negative result' do
       let(:event) { Event.create(started_at: 2.months.ago) }
       it { expect(event).to_not be_not_started }
+      it { expect(event).to respond_to(:unstarted?) }
     end
 
     context 'with positive result' do
