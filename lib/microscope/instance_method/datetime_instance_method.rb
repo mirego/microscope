@@ -31,6 +31,7 @@ module Microscope
           define_method "not_#{cropped_field}?" do
             !#{cropped_field}?
           end
+          alias_method 'un#{cropped_field}?', 'not_#{cropped_field}?'
 
           define_method "#{infinitive_verb}!" do
             send("#{field.name}=", #{@now})
