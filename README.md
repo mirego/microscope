@@ -29,7 +29,7 @@ create_table "events" do |t|
   t.string   "name"
   t.boolean  "special"
   t.datetime "expired_at"
-  t.date     "started_on"
+  t.date     "archived_on"
 end
 
 class Event < ActiveRecord::Base
@@ -57,39 +57,59 @@ Event.expired_after_or_at(2.months.from_now)
 Event.expired_between(2.months.ago..1.month.from_now)
 # SELECT * FROM `events` where `events`.`expired_at` BETWEEN '2013-05-05 15:43:42' AND '2013-08-05 15:43:42'
 
-Event.started_before(2.days.ago)
-# SELECT * FROM `events` where `events`.`started_on` < '2013-07-03'
+Event.archived_before(2.days.ago)
+# SELECT * FROM `events` where `events`.`archived_on` < '2013-07-03'
 
-Event.started_between(2.days.ago..3.days.from_now)
-# SELECT * FROM `events` where `events`.`started_on` BETWEEN '2013-07-03' AND '2013-07-08'
+Event.archived_between(2.days.ago..3.days.from_now)
+# SELECT * FROM `events` where `events`.`archived_on` BETWEEN '2013-07-03' AND '2013-07-08'
 
-Event.started
-# SELECT * FROM `events` where `events`.`started_at` IS NOT NULL AND `events`.`started_at` <= '2013-07-05 15:43:42'
+Event.archived
+# SELECT * FROM `events` where `events`.`archived_on` IS NOT NULL AND `events`.`archived_on` <= '2013-07-05 15:43:42'
 
-Event.not_started
-# SELECT * FROM `events` where `events`.`started_at` IS NULL OR `events`.`started_at` > '2013-07-05 15:43:42'
+Event.not_archived
+# SELECT * FROM `events` where `events`.`archived_on` IS NULL OR `events`.`archived_on` > '2013-07-05 15:43:42'
 ```
 
 Microscope also adds three instance methods to the model per scope.
 
 ```ruby
-event = Event.started.first
-# SELECT * FROM `events` where `events`.`started_at` IS NOT NULL AND `events`.`started_at` <= '2013-07-05 15:43:42' LIMIT 1
+event = Event.archived.first
+# SELECT * FROM `events` where `events`.`archived_on` IS NOT NULL AND `events`.`archived_on` <= '2013-07-05 15:43:42' LIMIT 1
 
-event.started? # => true
-event.not_started? # => false
+event.archived? # => true
+event.not_archived? # => false
 
-event = Event.unstarted.first
-event.started? # => false
+event = Event.unarchived.first
+event.archived? # => false
 
-event.start!
-event.started? # => true
-event.started_at # => 2013-07-05 15:43:44 (Time.now)
+event.archive!
+event.archived? # => true
+event.archived_at # => 2013-07-05 15:43:44 (Time.now)
 ```
 
 ### Options
 
-You can use a few options when calling `acts_as_microscope`:
+#### Special verbs
+
+Microscope uses a rather simple process to convert field names to infinitive
+verbs. It just removes the `d` if there’s one at the end of the verb. It also
+has its own irregular verbs list.
+
+For example, a `liked_at` field name will give `like!` and `unlike!` instance
+methods to records.
+
+But you can configure Microscope to use your own special verbs. For example:
+
+```ruby
+# config/initializers/microscope.rb
+Microscope.configure do |config|
+  config.special_verbs = { 'extracted' => 'extract', 'started' => 'start' }
+end
+```
+
+#### On `acts_as_microscope`
+
+You can also use a few options when calling `acts_as_microscope`:
 
 ```ruby
 class Event < ActiveRecord::Base

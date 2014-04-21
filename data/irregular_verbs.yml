@@ -18,7 +18,6 @@ burnt: burn
 burst: burst
 bought: buy
 caught: catch
-canceled: cancel
 cancelled: cancel
 chosen: choose
 clung: cling
@@ -32,17 +31,14 @@ dived: dive
 done: do
 drawn: draw
 dreamt: dream
-dreamed: dream
 drunk: drink
 driven: drive
 eaten: eat
-extracted: extract
 fallen: fall
 fed: feed
 felt: feel
 fought: fight
 found: find
-filtered: filter
 fit: fit
 fled: flee
 flung: fling
@@ -125,7 +121,6 @@ spat: spit
 split: split
 spread: spread
 sprung: spring
-started: start
 stood: stand
 stolen: steal
 stuck: stick
