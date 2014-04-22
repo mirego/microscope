@@ -24,8 +24,8 @@ module Microscope
     def self.past_participle_to_infinitive(key)
       *key, participle = key.split('_')
 
-      infinitive = if Microscope.irregular_verbs.include?(participle)
-        Microscope.irregular_verbs[participle]
+      infinitive = if Microscope.special_verbs.include?(participle)
+        Microscope.special_verbs[participle]
       elsif participle =~ /ed$/
         participle.sub(/d$/, '')
       else

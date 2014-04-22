@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Microscope::InstanceMethod::DatetimeInstanceMethod do
   before do
+    Microscope.configure do |config|
+      config.special_verbs = { 'started' => 'start' }
+    end
+
     run_migration do
       create_table(:events, force: true) do |t|
         t.datetime :started_at, default: nil
