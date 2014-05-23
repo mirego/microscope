@@ -12,7 +12,7 @@ module Microscope
         return unless @field_name =~ @cropped_field_regex
 
         cropped_field = field.name.gsub(@cropped_field_regex, '')
-        infinitive_verb = self.class.past_participle_to_infinitive(cropped_field)
+        infinitive_verb = Microscope::Utils.past_participle_to_infinitive(cropped_field)
 
         model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
           define_method "#{cropped_field}?" do
@@ -21,7 +21,7 @@ module Microscope
           end
 
           define_method "#{cropped_field}=" do |value|
-            if Microscope::InstanceMethod.value_to_boolean(value)
+            if Microscope::Utils.value_to_boolean(value)
               self.#{field.name} ||= #{@now}
             else
               self.#{field.name} = nil

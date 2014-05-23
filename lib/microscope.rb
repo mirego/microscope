@@ -4,6 +4,8 @@ require 'ostruct'
 require 'active_record'
 require 'active_support'
 
+require "microscope/utils"
+
 require "microscope/scope"
 require "microscope/scope/boolean_scope"
 require "microscope/scope/datetime_scope"
