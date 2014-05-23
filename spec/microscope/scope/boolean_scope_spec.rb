@@ -17,7 +17,7 @@ describe Microscope::Scope::BooleanScope do
       @user2 = User.create(active: false)
     end
 
-    it { expect(User.active).to have(1).items }
+    it { expect(User.active.length).to eql 1 }
     it { expect(User.active).to include(@user1) }
   end
 
@@ -27,7 +27,7 @@ describe Microscope::Scope::BooleanScope do
       @user2 = User.create(active: true)
     end
 
-    it { expect(User.not_active).to have(1).items }
+    it { expect(User.not_active.length).to eql 1 }
     it { expect(User.not_active).to include(@user1) }
     it { expect(User.unactive.to_a).to eql User.not_active.to_a }
   end
