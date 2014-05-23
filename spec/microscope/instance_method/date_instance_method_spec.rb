@@ -85,7 +85,7 @@ describe Microscope::InstanceMethod::DateInstanceMethod do
     it { expect { event.start! }.to change { event.reload.started_on }.from(nil).to(stubbed_date) }
   end
 
-  describe '#start!' do
+  describe '#not_start!' do
     let(:stubbed_date) { Date.parse('2020-03-18 08:00:00') }
 
     let(:event) { Event.create(started_on: stubbed_date) }
