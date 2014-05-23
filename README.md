@@ -5,11 +5,11 @@
   <br />
   Microscope adds useful scopes targeting ActiveRecord <code>boolean</code>, <code>date</code> and <code>datetime</code> fields.
   <br /><br />
-  <a href="https://rubygems.org/gems/microscope"><img src="https://badge.fury.io/rb/microscope.png" /></a>
-  <a href="https://codeclimate.com/github/mirego/microscope"><img src="https://codeclimate.com/github/mirego/microscope.png" /></a>
-  <a href='https://coveralls.io/r/mirego/microscope?branch=master'><img src='https://coveralls.io/repos/mirego/microscope/badge.png?branch=master' /></a>
-  <a href='https://gemnasium.com/mirego/microscope'><img src="https://gemnasium.com/mirego/microscope.png" /></a>
-  <a href="https://travis-ci.org/mirego/microscope"><img src="https://travis-ci.org/mirego/microscope.png?branch=master" /></a>
+  <a href="https://rubygems.org/gems/microscope"><img src="http://img.shields.io/gem/v/microscope.svg" /></a>
+  <a href="https://codeclimate.com/github/mirego/microscope"><img src="http://img.shields.io/codeclimate/github/mirego/microscope.svg" /></a>
+  <a href='https://coveralls.io/r/mirego/microscope?branch=master'><img src="http://img.shields.io/coveralls/mirego/microscope.svg" /></a>
+  <a href='https://gemnasium.com/mirego/microscope'><img src="http://img.shields.io/gemnasium/mirego/microscope.svg" /></a>
+  <a href="https://travis-ci.org/mirego/microscope"><img src="http://img.shields.io/travis/mirego/microscope.svg" /></a>
 </p>
 
 ---
