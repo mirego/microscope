@@ -7,20 +7,20 @@ module Microscope
         @now = 'Time.now'
         @cropped_field_regex = /_at$/
 
-        @cropped_field = field.name.gsub(@cropped_field_regex, '')
-        @infinitive_verb = Microscope::Utils.past_participle_to_infinitive(cropped_field)
       end
 
       def apply
-        if @field_name =~ @cropped_field_regex
-          model.class_eval apply_assignment_methods
-          model.class_eval apply_bang_methods
-          model.class_eval apply_predicate_methods
-          model.class_eval apply_aliases
-        end
+        @cropped_field = field.name.gsub(@cropped_field_regex, '')
+        @infinitive_verb = Microscope::Utils.past_participle_to_infinitive(cropped_field)
+
+        model.class_eval(apply_methods) if @field_name =~ @cropped_field_regex
       end
 
     protected
+
+      def apply_methods
+        apply_assignment_methods + apply_bang_methods + apply_predicate_methods + apply_aliases
+      end
 
       def apply_assignment_methods
         <<-RUBY
