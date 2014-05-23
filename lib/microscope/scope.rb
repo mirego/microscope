@@ -19,10 +19,7 @@ module Microscope
     def self.inject_scopes(model, fields, options = {})
       fields.each do |field|
         scope = "#{field.type.to_s.camelize}Scope"
-
-        if Microscope::Scope.const_defined?(scope)
-          "Microscope::Scope::#{scope}".constantize.new(model, field).apply
-        end
+        "Microscope::Scope::#{scope}".constantize.new(model, field).apply if const_defined?(scope)
       end
     end
   end
