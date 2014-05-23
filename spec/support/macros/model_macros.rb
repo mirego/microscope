@@ -7,7 +7,7 @@ module ModelMacros
     end
   end
 
-  protected
+protected
 
   # Create a new model class
   def spawn_model(klass_name, parent_klass, &block)

@@ -4,12 +4,12 @@ module Microscope
     def self.past_participle_to_infinitive(key)
       *key, participle = key.split('_')
 
-      infinitive = if Microscope.special_verbs.include?(participle)
-        Microscope.special_verbs[participle]
+      infinitive = participle
+
+      if Microscope.special_verbs.include?(participle)
+        infinitive = Microscope.special_verbs[participle]
       elsif participle =~ /ed$/
-        participle.sub(/d$/, '')
-      else
-        participle
+        infinitive = participle.sub(/d$/, '')
       end
 
       (key << infinitive).join('_')

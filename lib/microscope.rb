@@ -1,20 +1,20 @@
-require "microscope/version"
+require 'microscope/version'
 
 require 'ostruct'
 require 'active_record'
 require 'active_support'
 
-require "microscope/utils"
+require 'microscope/utils'
 
-require "microscope/scope"
-require "microscope/scope/boolean_scope"
-require "microscope/scope/datetime_scope"
-require "microscope/scope/date_scope"
+require 'microscope/scope'
+require 'microscope/scope/boolean_scope'
+require 'microscope/scope/datetime_scope'
+require 'microscope/scope/date_scope'
 
-require "microscope/instance_method"
-require "microscope/instance_method/boolean_instance_method"
-require "microscope/instance_method/datetime_instance_method"
-require "microscope/instance_method/date_instance_method"
+require 'microscope/instance_method'
+require 'microscope/instance_method/boolean_instance_method'
+require 'microscope/instance_method/datetime_instance_method'
+require 'microscope/instance_method/date_instance_method'
 
 module Microscope
   IRREGULAR_VERBS_FILE = File.expand_path('../../data/irregular_verbs.yml', __FILE__)
