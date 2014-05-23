@@ -6,18 +6,18 @@ module Microscope
 
         @now = 'Time.now'
         @cropped_field_regex = /_at$/
-      end
-
-      def apply
-        return unless @field_name =~ @cropped_field_regex
 
         @cropped_field = field.name.gsub(@cropped_field_regex, '')
         @infinitive_verb = Microscope::Utils.past_participle_to_infinitive(cropped_field)
+      end
 
-        model.class_eval apply_assignment_methods
-        model.class_eval apply_bang_methods
-        model.class_eval apply_predicate_methods
-        model.class_eval apply_aliases
+      def apply
+        if @field_name =~ @cropped_field_regex
+          model.class_eval apply_assignment_methods
+          model.class_eval apply_bang_methods
+          model.class_eval apply_predicate_methods
+          model.class_eval apply_aliases
+        end
       end
 
     protected
