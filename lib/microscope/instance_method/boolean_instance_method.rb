@@ -15,6 +15,15 @@ module Microscope
             save!
           end
           alias_method 'un#{infinitive_verb}!', 'not_#{infinitive_verb}!'
+
+          define_method "mark_as_#{field.name}" do
+            send("#{field.name}=", true)
+          end
+
+          define_method "mark_as_not_#{field.name}" do
+            send("#{field.name}=", false)
+          end
+          alias_method 'mark_as_un#{field.name}', 'mark_as_not_#{field.name}'
         RUBY
       end
     end
