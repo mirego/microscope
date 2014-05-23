@@ -43,6 +43,15 @@ module Microscope
             save!
           end
           alias_method 'un#{infinitive_verb}!', 'not_#{infinitive_verb}!'
+
+          define_method "mark_as_#{cropped_field}" do
+            self.#{cropped_field}= true
+          end
+
+          define_method "mark_as_not_#{cropped_field}" do
+            self.#{cropped_field}= false
+          end
+          alias_method 'mark_as_un#{cropped_field}', 'mark_as_not_#{cropped_field}'
         RUBY
       end
     end
