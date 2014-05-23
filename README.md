@@ -82,9 +82,19 @@ event.not_archived? # => false
 event = Event.unarchived.first
 event.archived? # => false
 
-event.archive!
+event.mark_as_archived
 event.archived? # => true
-event.archived_at # => 2013-07-05 15:43:44 (Time.now)
+event.archived_at # => 2013-07-05 15:43:42
+event.reload
+event.archived? # => false
+event.archived_at # => nil
+
+event.archive! (same as #mark_as_archived but save the record immediately)
+event.archived? # => true
+event.archived_at # => 2013-07-05 15:43:42
+event.reload
+event.archived? # => true
+event.archived_at # => 2013-07-05 15:43:42
 ```
 
 ### Options
