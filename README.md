@@ -89,7 +89,7 @@ event.reload
 event.archived? # => false
 event.archived_at # => nil
 
-event.archive! (same as #mark_as_archived but save the record immediately)
+event.archive! # (same as #mark_as_archived but save the record immediately)
 event.archived? # => true
 event.archived_at # => 2013-07-05 15:43:42
 event.reload
