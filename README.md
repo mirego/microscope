@@ -51,6 +51,9 @@ Event.expired_before(2.months.ago)
 Event.expired_before_now
 # SELECT * FROM `events` where `events`.`expired_at` < '2013-07-05 15:43:42'
 
+Event.expired_after_or_now
+# SELECT * FROM `events` where `events`.`expired_at` >= '2013-07-05 15:43:42'
+
 Event.expired_after_or_at(2.months.from_now)
 # SELECT * FROM `events` where `events`.`expired_at` >= '2013-09-05 15:43:42'
 

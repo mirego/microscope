@@ -22,10 +22,12 @@ module Microscope
           scope "#{cropped_field}_before", lambda { |time| where('#{quoted_field} < ?', #{@formatted_time}) }
           scope "#{cropped_field}_before_or#{@specific_suffix}", lambda { |time| where('#{quoted_field} <= ?', #{@formatted_time}) }
           scope "#{cropped_field}_before#{@now_suffix}", lambda { where('#{quoted_field} < ?', #{@now}) }
+          scope "#{cropped_field}_before_or#{@now_suffix}", lambda { where('#{quoted_field} <= ?', #{@now}) }
 
           scope "#{cropped_field}_after", lambda { |time| where('#{quoted_field} > ?', #{@formatted_time}) }
           scope "#{cropped_field}_after_or#{@specific_suffix}", lambda { |time| where('#{quoted_field} >= ?', #{@formatted_time}) }
           scope "#{cropped_field}_after#{@now_suffix}", lambda { where('#{quoted_field} > ?', #{@now}) }
+          scope "#{cropped_field}_after_or#{@now_suffix}", lambda { where('#{quoted_field} >= ?', #{@now}) }
 
           scope "#{cropped_field}_between", lambda { |range| where("#{@field_name}" => range) }
 

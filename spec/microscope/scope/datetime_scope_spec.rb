@@ -33,6 +33,19 @@ describe Microscope::Scope::DatetimeScope do
     it { expect(Event.started_before_or_at(datetime).to_a).to eql [@event1, @event2] }
   end
 
+  describe 'before_or_now scope' do
+    let(:stubbed_date) { Time.parse('2020-03-18 08:00:00') }
+    before { allow(Time).to receive(:now).and_return(stubbed_date) }
+
+    before do
+      @event1 = Event.create(started_at: stubbed_date)
+      @event2 = Event.create(started_at: stubbed_date - 1.second)
+      Event.create(started_at: 1.month.from_now)
+    end
+
+    it { expect(Event.started_before_or_now.to_a).to eql [@event1, @event2] }
+  end
+
   describe 'before_now scope' do
     before do
       @event = Event.create(started_at: 2.months.ago)
@@ -61,6 +74,19 @@ describe Microscope::Scope::DatetimeScope do
     end
 
     it { expect(Event.started_after_or_at(datetime).to_a).to eql [@event1, @event2] }
+  end
+
+  describe 'after_or_now scope' do
+    let(:stubbed_date) { Time.parse('2020-03-18 08:00:00') }
+    before { allow(Time).to receive(:now).and_return(stubbed_date) }
+
+    before do
+      @event1 = Event.create(started_at: stubbed_date)
+      @event2 = Event.create(started_at: stubbed_date + 1.second)
+      Event.create(started_at: 1.month.ago)
+    end
+
+    it { expect(Event.started_after_or_now.to_a).to eql [@event1, @event2] }
   end
 
   describe 'after_now scope' do
