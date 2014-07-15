@@ -2,14 +2,11 @@ language: ruby
 
 rvm:
   - 2.0.0
-  - 1.9.3
 
 gemfile:
-  - gemfiles/Gemfile.activerecord-4.0
-  - gemfiles/Gemfile.activerecord-3.2.x
+  - gemfiles/Gemfile.activerecord-4.1
 
 env:
-  - DB_ADAPTER=sqlite3
   - DB_ADAPTER=mysql2
   - DB_ADAPTER=postgresql
 
