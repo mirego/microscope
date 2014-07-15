@@ -21,6 +21,18 @@ describe Microscope::Scope::DatetimeScope do
     it { expect(Event.started_before(1.month.ago).to_a).to eql [@event] }
   end
 
+  describe 'before_or_at scope' do
+    let(:datetime) { 1.month.ago }
+
+    before do
+      @event1 = Event.create(started_at: datetime)
+      @event2 = Event.create(started_at: datetime - 1.second)
+      Event.create(started_at: 1.month.from_now)
+    end
+
+    it { expect(Event.started_before_or_at(datetime).to_a).to eql [@event1, @event2] }
+  end
+
   describe 'before_now scope' do
     before do
       @event = Event.create(started_at: 2.months.ago)
@@ -37,6 +49,18 @@ describe Microscope::Scope::DatetimeScope do
     end
 
     it { expect(Event.started_after(1.month.from_now).to_a).to eql [@event] }
+  end
+
+  describe 'after_or_at scope' do
+    let(:datetime) { 1.month.from_now }
+
+    before do
+      @event1 = Event.create(started_at: datetime)
+      @event2 = Event.create(started_at: datetime + 1.second)
+      Event.create(started_at: 1.month.ago)
+    end
+
+    it { expect(Event.started_after_or_at(datetime).to_a).to eql [@event1, @event2] }
   end
 
   describe 'after_now scope' do

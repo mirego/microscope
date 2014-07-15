@@ -6,7 +6,9 @@ module Microscope
 
         @now = 'Time.now'
         @now_suffix = '_now'
+        @specific_suffix = '_at'
         @cropped_field_regex = /_at$/
+        @formatted_time = 'time'
       end
 
       def apply
@@ -17,12 +19,12 @@ module Microscope
 
       def apply_scopes
         <<-RUBY
-          scope "#{cropped_field}_before", lambda { |time| where('#{quoted_field} < ?', time) }
-          scope "#{cropped_field}_before_or_at", lambda { |time| where('#{quoted_field} <= ?', time) }
+          scope "#{cropped_field}_before", lambda { |time| where('#{quoted_field} < ?', #{@formatted_time}) }
+          scope "#{cropped_field}_before_or#{@specific_suffix}", lambda { |time| where('#{quoted_field} <= ?', #{@formatted_time}) }
           scope "#{cropped_field}_before#{@now_suffix}", lambda { where('#{quoted_field} < ?', #{@now}) }
 
-          scope "#{cropped_field}_after", lambda { |time| where('#{quoted_field} > ?', time) }
-          scope "#{cropped_field}_after_or_at", lambda { |time| where('#{quoted_field} >= ?', time) }
+          scope "#{cropped_field}_after", lambda { |time| where('#{quoted_field} > ?', #{@formatted_time}) }
+          scope "#{cropped_field}_after_or#{@specific_suffix}", lambda { |time| where('#{quoted_field} >= ?', #{@formatted_time}) }
           scope "#{cropped_field}_after#{@now_suffix}", lambda { where('#{quoted_field} > ?', #{@now}) }
 
           scope "#{cropped_field}_between", lambda { |range| where("#{@field_name}" => range) }
