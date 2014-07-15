@@ -6,7 +6,6 @@ module Microscope
 
         @now = 'Time.now'
         @cropped_field_regex = /_at$/
-
       end
 
       def apply
