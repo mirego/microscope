@@ -5,6 +5,7 @@ describe Microscope::Scope::BooleanScope do
     run_migration do
       create_table(:users, force: true) do |t|
         t.boolean :active, default: false
+        t.boolean :public, default: false
       end
     end
 
@@ -30,5 +31,10 @@ describe Microscope::Scope::BooleanScope do
     it { expect(User.not_active.length).to eql 1 }
     it { expect(User.not_active).to include(@user1) }
     it { expect(User.unactive.to_a).to eql User.not_active.to_a }
+  end
+
+  describe 'reserved-keyword scope' do
+    it { expect(User).not_to respond_to(:public) }
+    it { expect(User).not_to respond_to(:not_public) }
   end
 end

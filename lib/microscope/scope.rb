@@ -15,6 +15,11 @@ module Microscope
       @cropped_field ||= @field_name.gsub(@cropped_field_regex, '')
     end
 
+    # Return whether the field name conflicts with another methods from ActiveRecord
+    def reserved_field_name?
+      model.private_methods.include?(@field_name.to_sym) || model.methods.include?(@field_name.to_sym)
+    end
+
     # Inject ActiveRecord scopes into a model
     def self.inject_scopes(model, fields, options = {})
       fields.each do |field|
