@@ -73,7 +73,7 @@ Event.not_archived
 # SELECT * FROM `events` where `events`.`archived_on` IS NULL OR `events`.`archived_on` > '2013-07-05 15:43:42'
 ```
 
-Microscope also adds three instance methods to the model per scope.
+Microscope also adds a few instance methods to the model per scope.
 
 ```ruby
 event = Event.archived.first
