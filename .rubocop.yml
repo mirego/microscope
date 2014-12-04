@@ -48,3 +48,6 @@ AssignmentInCondition:
 
 ClassAndModuleChildren:
   Enabled: false
+
+AbcSize:
+  Enabled: false

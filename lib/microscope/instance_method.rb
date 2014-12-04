@@ -10,7 +10,7 @@ module Microscope
     end
 
     # Inject ActiveRecord scopes into a model
-    def self.inject_instance_methods(model, fields, options = {})
+    def self.inject_instance_methods(model, fields, _options)
       fields.each do |field|
         scope = "#{field.type.to_s.camelize}InstanceMethod"
         "Microscope::InstanceMethod::#{scope}".constantize.new(model, field).apply if const_defined?(scope)
