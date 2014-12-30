@@ -64,6 +64,9 @@ module Microscope
       def apply_aliases
         <<-RUBY
           alias_method 'un#{@infinitive_verb}!', 'not_#{@infinitive_verb}!'
+          alias_method 'mark_as_#{@cropped_field}!', '#{@infinitive_verb}!'
+          alias_method 'mark_as_un#{@cropped_field}!', 'not_#{@infinitive_verb}!'
+          alias_method 'mark_as_not_#{@cropped_field}!', 'not_#{@infinitive_verb}!'
           alias_method 'mark_as_un#{@cropped_field}', 'mark_as_not_#{@cropped_field}'
           alias_method 'un#{@cropped_field}?', 'not_#{@cropped_field}?'
         RUBY

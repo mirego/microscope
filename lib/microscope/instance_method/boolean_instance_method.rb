@@ -9,12 +9,15 @@ module Microscope
             send("#{field.name}=", true)
             save!
           end
+          alias_method 'mark_as_#{field.name}!', '#{infinitive_verb}!'
 
           define_method "not_#{infinitive_verb}!" do
             send("#{field.name}=", false)
             save!
           end
           alias_method 'un#{infinitive_verb}!', 'not_#{infinitive_verb}!'
+          alias_method 'mark_as_un#{field.name}!', 'not_#{infinitive_verb}!'
+          alias_method 'mark_as_not_#{field.name}!', 'not_#{infinitive_verb}!'
 
           define_method "mark_as_#{field.name}" do
             send("#{field.name}=", true)
