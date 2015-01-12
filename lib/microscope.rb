@@ -17,25 +17,6 @@ require 'microscope/instance_method/datetime_instance_method'
 require 'microscope/instance_method/date_instance_method'
 
 module Microscope
-  IRREGULAR_VERBS_FILE = File.expand_path('../../data/irregular_verbs.yml', __FILE__)
-
-  def self.special_verbs
-    irregular_verbs_from_yaml ||= YAML.load_file(IRREGULAR_VERBS_FILE)
-    special_verbs_from_configuration ||= configuration.special_verbs
-
-    @special_verbs ||= begin
-      irregular_verbs_from_yaml.merge(special_verbs_from_configuration)
-    end
-  end
-
-  def self.configure
-    @configuration = configuration
-    yield(@configuration)
-  end
-
-  def self.configuration
-    @configuration ||= OpenStruct.new(special_verbs: {})
-  end
 end
 
 class ActiveRecord::Base

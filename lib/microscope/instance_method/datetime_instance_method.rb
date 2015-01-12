@@ -10,7 +10,6 @@ module Microscope
 
       def apply
         @cropped_field = field.name.gsub(@cropped_field_regex, '')
-        @infinitive_verb = Microscope::Utils.past_participle_to_infinitive(cropped_field)
 
         model.class_eval(apply_methods) if @field_name =~ @cropped_field_regex
       end
@@ -38,13 +37,13 @@ module Microscope
 
       def apply_bang_methods
         <<-RUBY
-          define_method '#{@infinitive_verb}!' do
-            send('#{field.name}=', #{@now})
+          define_method 'mark_as_#{@cropped_field}!' do
+            mark_as_#{@cropped_field}
             save!
           end
 
-          define_method 'not_#{@infinitive_verb}!' do
-            send('#{field.name}=', nil)
+          define_method 'mark_as_not_#{@cropped_field}!' do
+            mark_as_not_#{@cropped_field}
             save!
           end
         RUBY
@@ -63,10 +62,7 @@ module Microscope
 
       def apply_aliases
         <<-RUBY
-          alias_method 'un#{@infinitive_verb}!', 'not_#{@infinitive_verb}!'
-          alias_method 'mark_as_#{@cropped_field}!', '#{@infinitive_verb}!'
-          alias_method 'mark_as_un#{@cropped_field}!', 'not_#{@infinitive_verb}!'
-          alias_method 'mark_as_not_#{@cropped_field}!', 'not_#{@infinitive_verb}!'
+          alias_method 'mark_as_un#{@cropped_field}!', 'mark_as_not_#{@cropped_field}!'
           alias_method 'mark_as_un#{@cropped_field}', 'mark_as_not_#{@cropped_field}'
           alias_method 'un#{@cropped_field}?', 'not_#{@cropped_field}?'
         RUBY

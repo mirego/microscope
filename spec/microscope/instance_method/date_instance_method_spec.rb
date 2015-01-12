@@ -2,10 +2,6 @@ require 'spec_helper'
 
 describe Microscope::InstanceMethod::DateInstanceMethod do
   before do
-    Microscope.configure do |config|
-      config.special_verbs = { 'started' => 'start' }
-    end
-
     run_migration do
       create_table(:events, force: true) do |t|
         t.date :start_date, default: nil
@@ -77,20 +73,19 @@ describe Microscope::InstanceMethod::DateInstanceMethod do
     end
   end
 
-  describe '#start!' do
+  describe '#mark_as_started!' do
     let(:stubbed_date) { Date.parse('2020-03-18 08:00:00') }
     before { allow(Date).to receive(:today).and_return(stubbed_date) }
 
     let(:event) { Event.create(started_on: nil) }
-    it { expect { event.start! }.to change { event.reload.started_on }.from(nil).to(stubbed_date) }
+    it { expect { event.mark_as_started! }.to change { event.reload.started_on }.from(nil).to(stubbed_date) }
   end
 
-  describe '#not_start!' do
+  describe '#mark_as_not_started!' do
     let(:stubbed_date) { Date.parse('2020-03-18 08:00:00') }
 
     let(:event) { Event.create(started_on: stubbed_date) }
-    it { expect { event.not_start! }.to change { event.reload.started_on }.from(stubbed_date).to(nil) }
-    it { expect(event).to respond_to(:unstart!) }
+    it { expect { event.mark_as_not_started! }.to change { event.reload.started_on }.from(stubbed_date).to(nil) }
   end
 
   describe '#mark_as_started' do
