@@ -92,7 +92,7 @@ event.reload
 event.archived? # => false
 event.archived_at # => nil
 
-event.archive! # (same as #mark_as_archived but save the record immediately)
+event.mark_as_archived! # (same as #mark_as_archived but save the record immediately)
 event.archived? # => true
 event.archived_at # => 2013-07-05 15:43:42
 event.reload
@@ -101,24 +101,6 @@ event.archived_at # => 2013-07-05 15:43:42
 ```
 
 ### Options
-
-#### Special verbs
-
-Microscope uses a rather simple process to convert field names to infinitive
-verbs. It just removes the `d` if there’s one at the end of the verb. It also
-has its own irregular verbs list.
-
-For example, a `liked_at` field name will give `like!` and `unlike!` instance
-methods to records.
-
-But you can configure Microscope to use your own special verbs. For example:
-
-```ruby
-# config/initializers/microscope.rb
-Microscope.configure do |config|
-  config.special_verbs = { 'extracted' => 'extract', 'started' => 'start' }
-end
-```
 
 #### On `acts_as_microscope`
 
