@@ -14,12 +14,15 @@ describe Microscope::InstanceMethod::BooleanInstanceMethod do
   describe '#feed!' do
     let(:animal) { Animal.create(fed: false) }
     it { expect { animal.feed! }.to change { animal.reload.fed? }.from(false).to(true) }
+    it { expect(animal).to respond_to(:mark_as_fed!) }
   end
 
   describe '#not_feed!' do
     let(:animal) { Animal.create(fed: true) }
     it { expect { animal.not_feed! }.to change { animal.reload.fed? }.from(true).to(false) }
     it { expect(animal).to respond_to(:unfeed!) }
+    it { expect(animal).to respond_to(:mark_as_unfed!) }
+    it { expect(animal).to respond_to(:mark_as_not_fed!) }
   end
 
   describe '#mark_as_fed' do
