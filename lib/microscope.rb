@@ -19,18 +19,20 @@ require 'microscope/instance_method/date_instance_method'
 module Microscope
 end
 
-class ActiveRecord::Base
-  def self.acts_as_microscope(options = {})
-    return unless table_exists?
+module ActiveRecord
+  class Base
+    def self.acts_as_microscope(options = {})
+      return unless table_exists?
 
-    except = options[:except] || []
-    model_columns = columns.dup.reject { |c| except.include?(c.name.to_sym) }
+      except = options[:except] || []
+      model_columns = columns.dup.reject { |c| except.include?(c.name.to_sym) }
 
-    if only = options[:only]
-      model_columns = model_columns.select { |c| only.include?(c.name.to_sym) }
+      if only = options[:only]
+        model_columns = model_columns.select { |c| only.include?(c.name.to_sym) }
+      end
+
+      Microscope::Scope.inject_scopes(self, model_columns, options)
+      Microscope::InstanceMethod.inject_instance_methods(self, model_columns, options)
     end
-
-    Microscope::Scope.inject_scopes(self, model_columns, options)
-    Microscope::InstanceMethod.inject_instance_methods(self, model_columns, options)
   end
 end

@@ -23,7 +23,7 @@ describe Microscope do
 
     describe :except do
       before do
-        microscope 'User', except: [:admin, :removed_at, :ended_on]
+        microscope 'User', except: %i(admin removed_at ended_on)
       end
 
       it { expect(User).to respond_to :active }
@@ -57,7 +57,7 @@ describe Microscope do
 
     describe :only do
       before do
-        microscope 'User', only: [:admin, :removed_at, :ended_on]
+        microscope 'User', only: %i(admin removed_at ended_on)
       end
 
       it { expect(User).to_not respond_to :active }
@@ -91,7 +91,7 @@ describe Microscope do
 
     describe 'except and only' do
       before do
-        microscope 'User', only: [:admin, :started_on], except: [:active]
+        microscope 'User', only: %i(admin started_on), except: %i(active)
       end
 
       it { expect(User).to_not respond_to :active }

@@ -1,5 +1,5 @@
 AllCops:
-  Include:
+  Exclude:
     - microscope.gemspec
 
 Documentation:
@@ -9,9 +9,6 @@ Encoding:
   Enabled: false
 
 LineLength:
-  Max: 200
-
-ClassLength:
   Max: 200
 
 AccessModifierIndentation:
@@ -37,17 +34,29 @@ ColonMethodCall:
 AsciiComments:
   Enabled: false
 
-Lambda:
-  Enabled: false
-
 RegexpLiteral:
   Enabled: false
 
 AssignmentInCondition:
   Enabled: false
 
-ClassAndModuleChildren:
+ParameterLists:
+  CountKeywordArgs: false
+
+SingleLineBlockParams:
+  Methods:
+    - reduce:
+      - memo
+      - item
+
+Metrics/AbcSize:
   Enabled: false
 
-AbcSize:
-  Enabled: false
+Style/CollectionMethods:
+  Enabled: true
+
+Style/SymbolArray:
+  Enabled: true
+
+Style/ExtraSpacing:
+  Enabled: true
