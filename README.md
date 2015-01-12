@@ -7,7 +7,6 @@
   <br /><br />
   <a href="https://rubygems.org/gems/microscope"><img src="http://img.shields.io/gem/v/microscope.svg" /></a>
   <a href="https://codeclimate.com/github/mirego/microscope"><img src="http://img.shields.io/codeclimate/github/mirego/microscope.svg" /></a>
-  <a href='https://coveralls.io/r/mirego/microscope?branch=master'><img src="http://img.shields.io/coveralls/mirego/microscope.svg" /></a>
   <a href='https://gemnasium.com/mirego/microscope'><img src="http://img.shields.io/gemnasium/mirego/microscope.svg" /></a>
   <a href="https://travis-ci.org/mirego/microscope"><img src="http://img.shields.io/travis/mirego/microscope.svg" /></a>
 </p>
