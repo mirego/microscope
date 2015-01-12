@@ -6,8 +6,8 @@ require 'microscope/version'
 Gem::Specification.new do |spec|
   spec.name          = 'microscope'
   spec.version       = Microscope::VERSION
-  spec.authors       = ['Simon Prévost', 'Rémi Prévost']
-  spec.email         = ['sprevost@mirego.com', 'rprevost@mirego.com']
+  spec.authors       = ['Simon Prévost', 'Rémi Prévost', 'Samuel Garneau']
+  spec.email         = ['sprevost@mirego.com', 'rprevost@mirego.com', 'sgarneau@mirego.com']
   spec.description   = 'Microscope adds useful scopes targeting ActiveRecord boolean and datetime fields.'
   spec.summary       = spec.description
   spec.homepage      = 'https://github.com/mirego/microscope'
