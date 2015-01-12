@@ -27,9 +27,5 @@ RSpec.configure do |config|
     # Establish ActiveRecord database connection
     adapter = ENV['DB_ADAPTER'] || 'sqlite3'
     setup_database(adapter: adapter, database: 'microscope_test')
-
-    # Reset internal variables
-    Microscope.instance_variable_set(:@configuration, nil)
-    Microscope.instance_variable_set(:@special_verbs, nil)
   end
 end
