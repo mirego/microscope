@@ -18,7 +18,9 @@ before_script:
   - mysql -e 'create database microscope_test;'
   - psql -c 'create database microscope_test;' -U postgres
 
-script: "echo 'DO IT' && bundle exec rake spec"
+script:
+  - 'echo "Checking code style" && bundle exec phare'
+  - 'echo "Running tests" && bundle exec rake spec'
 
 notifications:
   hipchat:
