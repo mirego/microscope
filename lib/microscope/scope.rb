@@ -2,7 +2,7 @@ module Microscope
   class Scope
     attr_reader :model, :field
 
-    def initialize(model:, field:)
+    def initialize(model, field)
       @model = model
       @field = field
     end
@@ -19,7 +19,7 @@ module Microscope
     def self.inject_scopes(model, fields, _options)
       fields.each do |field|
         scope = "#{field.type.to_s.camelize}Scope"
-        "Microscope::Scope::#{scope}".constantize.new(model: model, field: field).apply if const_defined?(scope)
+        "Microscope::Scope::#{scope}".constantize.new(model, field).apply if const_defined?(scope)
       end
     end
   end
