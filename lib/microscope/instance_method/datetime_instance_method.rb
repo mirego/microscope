@@ -11,7 +11,7 @@ module Microscope
       def apply
         @cropped_field = field.name.gsub(@cropped_field_regex, '')
 
-        model.class_eval(apply_methods) if @field_name =~ @cropped_field_regex
+        model.class_eval(apply_methods) if @field.name =~ @cropped_field_regex
       end
 
     protected

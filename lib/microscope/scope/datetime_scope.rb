@@ -12,7 +12,7 @@ module Microscope
       end
 
       def apply
-        model.class_eval(apply_scopes) if @field_name =~ @cropped_field_regex
+        model.class_eval(apply_scopes) if @field.name =~ @cropped_field_regex
       end
 
     private
@@ -29,7 +29,7 @@ module Microscope
           scope "#{cropped_field}_after#{@now_suffix}", lambda { where('#{quoted_field} > ?', #{@now}) }
           scope "#{cropped_field}_after_or#{@now_suffix}", lambda { where('#{quoted_field} >= ?', #{@now}) }
 
-          scope "#{cropped_field}_between", lambda { |range| where("#{@field_name}" => range) }
+          scope "#{cropped_field}_between", lambda { |range| where("#{@field.name}" => range) }
 
           scope "#{cropped_field}", lambda { where('#{quoted_field} IS NOT NULL AND #{quoted_field} <= ?', #{@now}) }
           scope "not_#{cropped_field}", lambda { where('#{quoted_field} IS NULL OR #{quoted_field} > ?', #{@now}) }
