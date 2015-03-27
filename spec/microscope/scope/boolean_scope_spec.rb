@@ -3,12 +3,14 @@ require 'spec_helper'
 describe Microscope::Scope::BooleanScope do
   before do
     run_migration do
-      create_table(:users, force: true) do |t|
+      create_table(:oh_users, force: true) do |t|
         t.boolean :active, default: false
       end
     end
 
-    microscope 'User'
+    microscope 'User' do
+      self.table_name = 'oh_users'
+    end
   end
 
   describe 'positive scope' do

@@ -8,7 +8,7 @@ module Microscope
     end
 
     def quoted_field
-      @quoted_field ||= "#{ActiveRecord::Base.connection.quote_table_name(@model.name.tableize)}.#{ActiveRecord::Base.connection.quote_column_name(@field.name)}"
+      @quoted_field ||= "#{ActiveRecord::Base.connection.quote_table_name(@model.table_name)}.#{ActiveRecord::Base.connection.quote_column_name(@field.name)}"
     end
 
     def cropped_field
