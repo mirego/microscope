@@ -12,7 +12,10 @@ module Microscope
       end
 
       def apply
-        model.class_eval(apply_scopes) if @field.name =~ @cropped_field_regex
+        return unless @field.name =~ @cropped_field_regex
+
+        validate_field_name!(cropped_field, @field.name)
+        model.class_eval(apply_scopes)
       end
 
     private
