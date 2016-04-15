@@ -107,11 +107,11 @@ You can also use a few options when calling `acts_as_microscope`:
 
 ```ruby
 class Event < ActiveRecord::Base
-  acts_as_microscope, only: [:created_at]
+  acts_as_microscope only: [:created_at]
 end
 
 class User < ActiveRecord::Base
-  acts_as_microscope, except: [:created_at]
+  acts_as_microscope except: [:created_at]
 end
 
 Event.created_before(2.months.ago) # works!
