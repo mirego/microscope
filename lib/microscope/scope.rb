@@ -22,5 +22,17 @@ module Microscope
         "Microscope::Scope::#{scope}".constantize.new(model, field).apply if const_defined?(scope)
       end
     end
+
+  protected
+
+    def blacklisted_fields
+      return [] unless defined? ActiveRecord::AttributeMethods::BLACKLISTED_CLASS_METHODS
+
+      ActiveRecord::AttributeMethods::BLACKLISTED_CLASS_METHODS
+    end
+
+    def validate_field_name!(cropped_field_name, field_name)
+      raise Microscope::BlacklistedColumnsError, Microscope::BlacklistedColumnsErrorMessage % field_name if blacklisted_fields.include?(cropped_field_name)
+    end
   end
 end

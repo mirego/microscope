@@ -17,6 +17,11 @@ require 'microscope/instance_method/datetime_instance_method'
 require 'microscope/instance_method/date_instance_method'
 
 module Microscope
+  # Constants
+  BlacklistedColumnsErrorMessage = 'The `%s` column cannot be used with Microscope because it’s on ActiveRecord’s method name blacklist.'.freeze
+
+  # Errors
+  BlacklistedColumnsError = Class.new(StandardError)
 end
 
 module ActiveRecord
