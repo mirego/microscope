@@ -131,7 +131,7 @@ Setting a Microscope-enabled attribute to a [_truthy_ value](https://github.com/
 will correctly cast the attribute to the right value (`Date.today` or `Time.now`, respectively). Otherwise the attribute will
 be set to `nil`.
 
-### Model
+#### Model
 
 ```
 class Event < ApplicationRecord
@@ -144,7 +144,7 @@ end
 ```erb
 <% form_for @event do |form| %>
   <%= form.text_field :name %>
-  <%= form.check_box :archived, checked: form.object.archived? %>
+  <%= form.check_box :archived? %>
 
   <%= submit_tag %>
 <% end %>
