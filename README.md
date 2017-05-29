@@ -3,7 +3,7 @@
     <img src="http://i.imgur.com/JMcAStM.png" alt="Microscope" />
   </a>
   <br />
-  Microscope adds useful scopes targeting ActiveRecord <code>boolean</code>, <code>date</code> and <code>datetime</code> fields.
+  Microscope adds useful scopes targeting ActiveRecord <code>boolean</code>, <code>date</code> and <code>datetime</code> attributes.
   <br /><br />
   <a href="https://rubygems.org/gems/microscope"><img src="http://img.shields.io/gem/v/microscope.svg" /></a>
   <a href="https://codeclimate.com/github/mirego/microscope"><img src="http://img.shields.io/codeclimate/github/mirego/microscope.svg" /></a>
@@ -31,7 +31,7 @@ create_table "events" do |t|
   t.date     "archived_on"
 end
 
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   acts_as_microscope
 end
 
@@ -106,11 +106,11 @@ event.archived_at # => 2013-07-05 15:43:42
 You can also use a few options when calling `acts_as_microscope`:
 
 ```ruby
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   acts_as_microscope only: [:created_at]
 end
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   acts_as_microscope except: [:created_at]
 end
 
@@ -121,9 +121,57 @@ User.created_before(2.months.ago) # NoMethodError
 User.updated_before(2.months.ago) # works!
 ```
 
+### Date and time attributes and forms
+
+When using Microscope on a `date` or `datetime` attribute, you’ll probably want
+avoid dealing with those values in forms and only expose a checkbox to the
+user.
+
+Setting a Microscope-enabled attribute to a [_truthy_ value](https://github.com/mirego/microscope/blob/master/lib/microscope/utils.rb#L5)
+will correctly cast the attribute to the right value (`Date.today` or `Time.now`, respectively). Otherwise the attribute will
+be set to `nil`.
+
+### Model
+
+```
+class Event < ApplicationRecord
+  acts_as_microscope
+end
+```
+
+#### View
+
+```erb
+<% form_for @event do |form| %>
+  <%= form.text_field :name %>
+  <%= form.check_box :archived, checked: form.object.archived? %>
+
+  <%= submit_tag %>
+<% end %>
+```
+
+#### Controller
+
+```ruby
+class EventsController < ApplicationController
+  def new
+    @event = Event.new
+  end
+
+  def create
+    @event = Event.new(event_params)
+    @event.save
+  end
+
+  def event_params
+    params.require(:event).permit(:name, :archived)
+  end
+end
+```
+
 ## License
 
-`Microscope` is © 2013-2015 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/microscope/blob/master/LICENSE.md) file.
+`Microscope` is © 2013-2017 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/microscope/blob/master/LICENSE.md) file.
 
 The microscope logo is based on [this lovely icon](http://thenounproject.com/noun/microscope/#icon-No9056) by [Scott Lewis](http://thenounproject.com/iconify), from The Noun Project. Used under a [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0/) license.
 
