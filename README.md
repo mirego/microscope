@@ -1,14 +1,12 @@
 <p align="center">
   <a href="https://github.com/mirego/microscope">
-    <img src="http://i.imgur.com/JMcAStM.png" alt="Microscope" />
+    <img src="https://user-images.githubusercontent.com/11348/55957273-e1a0a580-5c33-11e9-9eb7-edb896fbbeaf.png" width="500" alt="Microscope" />
   </a>
   <br />
   Microscope adds useful scopes targeting ActiveRecord <code>boolean</code>, <code>date</code> and <code>datetime</code> attributes.
   <br /><br />
-  <a href="https://rubygems.org/gems/microscope"><img src="http://img.shields.io/gem/v/microscope.svg" /></a>
-  <a href="https://codeclimate.com/github/mirego/microscope"><img src="http://img.shields.io/codeclimate/github/mirego/microscope.svg" /></a>
-  <a href='https://gemnasium.com/mirego/microscope'><img src="http://img.shields.io/gemnasium/mirego/microscope.svg" /></a>
-  <a href="https://travis-ci.org/mirego/microscope"><img src="http://img.shields.io/travis/mirego/microscope.svg" /></a>
+  <a href="https://travis-ci.com/mirego/microscope"><img src="https://travis-ci.com/mirego/microscope.svg?branch=master" /></a>
+  <a href="https://rubygems.org/package/microscope"><img src="https://img.shields.io/gem/v/microscope.svg" /></a>
 </p>
 
 ---
@@ -171,12 +169,12 @@ end
 
 ## License
 
-`Microscope` is © 2013-2017 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/microscope/blob/master/LICENSE.md) file.
+`Microscope` is © 2013-2019 [Mirego](http://www.mirego.com) and may be freely distributed under the [New BSD license](http://opensource.org/licenses/BSD-3-Clause).  See the [`LICENSE.md`](https://github.com/mirego/microscope/blob/master/LICENSE.md) file.
 
 The microscope logo is based on [this lovely icon](http://thenounproject.com/noun/microscope/#icon-No9056) by [Scott Lewis](http://thenounproject.com/iconify), from The Noun Project. Used under a [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0/) license.
 
 ## About Mirego
 
-[Mirego](http://mirego.com) is a team of passionate people who believe that work is a place where you can innovate and have fun. We're a team of [talented people](http://life.mirego.com) who imagine and build beautiful Web and mobile applications. We come together to share ideas and [change the world](http://mirego.org).
+[Mirego](https://www.mirego.com) is a team of passionate people who believe that work is a place where you can innovate and have fun. We're a team of [talented people](https://life.mirego.com) who imagine and build beautiful Web and mobile applications. We come together to share ideas and [change the world](https://www.mirego.org).
 
-We also [love open-source software](http://open.mirego.com) and we try to give back to the community as much as we can.
+We also [love open-source software](https://open.mirego.com) and we try to give back to the community as much as we can.
