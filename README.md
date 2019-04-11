@@ -1,13 +1,11 @@
-<p align="center">
-  <a href="https://github.com/mirego/microscope">
-    <img src="https://user-images.githubusercontent.com/11348/55957273-e1a0a580-5c33-11e9-9eb7-edb896fbbeaf.png" width="500" alt="Microscope" />
-  </a>
-  <br />
-  Microscope adds useful scopes targeting ActiveRecord <code>boolean</code>, <code>date</code> and <code>datetime</code> attributes.
-  <br /><br />
-  <a href="https://travis-ci.com/mirego/microscope"><img src="https://travis-ci.com/mirego/microscope.svg?branch=master" /></a>
-  <a href="https://rubygems.org/package/microscope"><img src="https://img.shields.io/gem/v/microscope.svg" /></a>
-</p>
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/11348/55957273-e1a0a580-5c33-11e9-9eb7-edb896fbbeaf.png" width="600" alt="Microscope" />
+  <p><br />Microscope adds useful scopes targeting ActiveRecord <code>boolean</code>, <code>date</code> and <code>datetime</code> attributes.</p>
+  <p>
+    <a href="https://travis-ci.com/mirego/microscope"><img src="https://travis-ci.com/mirego/microscope.svg?branch=master" /></a>
+    <a href="https://rubygems.org/package/microscope"><img src="https://img.shields.io/gem/v/microscope.svg" /></a>
+  </p>
+</div>
 
 ---
 
