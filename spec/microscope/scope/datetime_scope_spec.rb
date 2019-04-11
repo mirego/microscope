@@ -66,7 +66,7 @@ describe Microscope::Scope::DatetimeScope do
     end
 
     describe 'after_or_at scope' do
-      let(:datetime) { 1.month.from_now }
+      let(:datetime) { 1.month.from_now.beginning_of_hour }
 
       before do
         @event1 = Event.create(started_at: datetime)

@@ -1,6 +1,17 @@
 require 'spec_helper'
 
 describe Microscope do
+  describe :acts_as_microscope_without_database do
+    specify do
+      adapter = ENV['DB_ADAPTER'] || 'sqlite3'
+      setup_database(adapter: adapter, database: 'microscope_test_that_does_not_exist')
+
+      class User < ActiveRecord::Base
+        acts_as_microscope
+      end
+    end
+  end
+
   describe :acts_as_microscope do
     before do
       run_migration do

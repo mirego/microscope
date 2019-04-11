@@ -42,7 +42,7 @@ describe Microscope::InstanceMethod::DatetimeInstanceMethod do
 
     context 'with present argument, twice' do
       let(:event) { Event.create(started_at: time) }
-      let(:time) { 2.months.ago }
+      let(:time) { 2.months.ago.beginning_of_hour }
       let(:value) { '1' }
 
       it { expect(event.started_at).to eql time }
