@@ -3,7 +3,7 @@
   <p><br />Microscope adds useful scopes targeting ActiveRecord <code>boolean</code>, <code>date</code> and <code>datetime</code> attributes.</p>
   <p>
     <a href="https://travis-ci.com/mirego/microscope"><img src="https://travis-ci.com/mirego/microscope.svg?branch=master" /></a>
-    <a href="https://rubygems.org/package/microscope"><img src="https://img.shields.io/gem/v/microscope.svg" /></a>
+    <a href="https://rubygems.org/gems/microscope"><img src="https://img.shields.io/gem/v/microscope.svg" /></a>
   </p>
 </div>
 
