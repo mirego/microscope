@@ -129,7 +129,7 @@ be set to `nil`.
 
 #### Model
 
-```
+```ruby
 class Event < ApplicationRecord
   acts_as_microscope
 end
