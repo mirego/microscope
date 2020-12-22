@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe Microscope do
+  describe :acts_as_microscope_without_connection do
+    specify do
+      setup_database(adapter: 'invalid', database: 'invalid_database')
+
+      class User < ActiveRecord::Base
+        acts_as_microscope
+      end
+    end
+  end
+
   describe :acts_as_microscope_without_database do
     specify do
       adapter = ENV['DB_ADAPTER'] || 'sqlite3'

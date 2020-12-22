@@ -26,9 +26,13 @@ module Microscope
   protected
 
     def blacklisted_fields
-      return [] unless defined? ActiveRecord::AttributeMethods::BLACKLISTED_CLASS_METHODS
+      # ActiveRecord 6.1
+      return ActiveRecord::AttributeMethods::RESTRICTED_CLASS_METHODS if defined? ActiveRecord::AttributeMethods::RESTRICTED_CLASS_METHODS
 
-      ActiveRecord::AttributeMethods::BLACKLISTED_CLASS_METHODS
+      # ActiveRecord < 6
+      return ActiveRecord::AttributeMethods::BLACKLISTED_CLASS_METHODS if defined? ActiveRecord::AttributeMethods::BLACKLISTED_CLASS_METHODS
+
+      []
     end
 
     def validate_field_name!(cropped_field_name, field_name)

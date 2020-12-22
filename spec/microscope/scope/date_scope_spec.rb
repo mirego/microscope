@@ -84,7 +84,7 @@ describe Microscope::Scope::DateScope do
       before do
         @event1 = Event.create(started_on: stubbed_date)
         @event2 = Event.create(started_on: stubbed_date + 1.day)
-        Event.create(started_on: 1.month.ago)
+        Event.create(started_on: stubbed_date - 1.month)
       end
 
       it { expect(Event.started_after_or_today.to_a).to eql [@event1, @event2] }

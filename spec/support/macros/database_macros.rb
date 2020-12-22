@@ -16,9 +16,13 @@ module DatabaseMacros
   end
 
   def setup_database(opts = {})
-    adapter = "#{opts[:adapter].capitalize}Adapter".constantize.new(database: opts[:database])
-    adapter.establish_connection!
-    adapter.reset_database!
+    begin
+      adapter = "#{opts[:adapter].capitalize}Adapter".constantize.new(database: opts[:database])
+      adapter.establish_connection!
+      adapter.reset_database!
+    rescue ActiveRecord::ConnectionNotEstablished
+      nil
+    end
 
     # Silence everything
     ActiveRecord::Base.logger = ActiveRecord::Migration.verbose = false
