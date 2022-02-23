@@ -9,6 +9,10 @@ gemfile:
   - gemfiles/Gemfile.activerecord-5.1
   - gemfiles/Gemfile.activerecord-5.2
 
+services:
+  - mysql
+  - postgresql
+
 env:
   - DB_ADAPTER=sqlite3
   - DB_ADAPTER=mysql2

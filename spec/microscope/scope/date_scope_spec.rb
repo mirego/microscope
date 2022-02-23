@@ -35,7 +35,7 @@ describe Microscope::Scope::DateScope do
     end
 
     describe 'before_or_now scope' do
-      let(:stubbed_date) { Date.parse('2020-03-18 08:00:00') }
+      let(:stubbed_date) { Date.today + 1.year }
       before { allow(Date).to receive(:today).and_return(stubbed_date) }
 
       before do
@@ -78,7 +78,7 @@ describe Microscope::Scope::DateScope do
     end
 
     describe 'after_or_now scope' do
-      let(:stubbed_date) { Date.parse('2020-03-18 08:00:00') }
+      let(:stubbed_date) { Date.today + 1.year }
       before { allow(Date).to receive(:today).and_return(stubbed_date) }
 
       before do
