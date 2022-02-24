@@ -38,7 +38,7 @@ module ActiveRecord
 
       Microscope::Scope.inject_scopes(self, model_columns, options)
       Microscope::InstanceMethod.inject_instance_methods(self, model_columns, options)
-    rescue ActiveRecord::NoDatabaseError
+    rescue ActiveRecord::ActiveRecordError
       nil
     end
   end
